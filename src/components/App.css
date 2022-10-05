@@ -1,0 +1,21 @@
+.page {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: #202020;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #FFFFFF;
+  /*position: relative;*/
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page__content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
