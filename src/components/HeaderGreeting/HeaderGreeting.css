@@ -1,0 +1,24 @@
+.greeting__container {display: flex;
+    margin: 0 auto;
+    padding: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.greeting__logo {
+    margin: 0;
+    padding: 70px 0 0;
+    width: 38px;
+    height: 38px;
+}
+
+.greeting__text {
+    margin: 0;
+    padding: 40px 0 40px;
+    text-align: left;
+    font-size: 24px;
+    line-height: 1.21;
+    font-style: medium;;
+    font-weight: 500;
+}
