@@ -1,4 +1,4 @@
-.error {
+.notfound {
     margin: 0 auto;
     padding: 0;
     display: flex;
@@ -6,7 +6,7 @@
     justify-content: flex-start;
 }
 
-.error__code {
+.notfound__code {
     margin: 0;
     padding: 246px 0 0;
     font-size: 140px;
@@ -18,18 +18,18 @@
 }
 
 @media screen and (max-width: 768px) {
-    .error__code {
+    .notfound__code {
        padding: 408px 0 0;
     }
 }
 
 @media screen and (max-width: 425px) {
-    .error__code {
+    .notfound__code {
        padding: 329px 0 0; 
     }
 }
 
-.error__details {
+.notfound__details {
     margin: 0;
     padding: 5px 0 0;
     font-size: 16px;
@@ -41,12 +41,12 @@
 }
 
 @media screen and (max-width: 425px) {
-    .error__details {
+    .notfound__details {
        padding: 10px 0 0; 
     }
 }
 
-.error__link {
+.notfound__link {
     margin: 0;
     padding: 184px 0 0;
     font-size: 14px;
@@ -57,19 +57,19 @@
     transition: text-decoration 0.5s ease-in 0s;
 }
 
-.error__link:hover {
+.notfound__link:hover {
     text-decoration: underline;
 }
 
 
 @media screen and (max-width: 768px) {
-    .error__link {
+    .notfound__link {
        padding: 184px 0 0; 
     }
 }
 
 @media screen and (max-width: 425px) {
-    .error__link {
+    .notfound__link {
        padding: 284px 0 0; 
     }
 }

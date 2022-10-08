@@ -6,10 +6,10 @@ function NotFound(props) {
 
 
     return (
-        <div className="error">
-            <h1 className="error__code">404</h1>
-            <h2 className="error__details">Страница не найдена</h2>
-            <a className="error__link">Назад</a>
+        <div className="notfound">
+            <h1 className="notfound__code">404</h1>
+            <h2 className="notfound__details">Страница не найдена</h2>
+            <a className="notfound__link">Назад</a>
         </div>
     );
 }
