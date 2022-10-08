@@ -8,6 +8,13 @@
     box-sizing: border-box;
 }
 
+
+@media screen and (max-width: 490px) {
+    .form {
+        width: 260px;
+    }
+}
+
 .form__container {
     margin: 0 auto;
     padding: 0;
@@ -68,4 +75,9 @@
     height: 45px;
 }
 
-.form__input{}
+@media screen and (max-width: 490px) {
+    .form__submit-button {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+}

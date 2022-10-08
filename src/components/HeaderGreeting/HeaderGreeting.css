@@ -7,7 +7,7 @@
     align-items: flex-start;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 490px) {
     .greeting__container {
         align-items: center;
     }
@@ -32,7 +32,7 @@
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 490px) {
     .greeting__logo {
         padding: 56px 0 0;
     }
@@ -44,11 +44,10 @@
     text-align: left;
     font-size: 24px;
     line-height: 1.21;
-    font-style: medium;;
     font-weight: 500;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 490px) {
     .greeting__text {
         padding: 50px 0 80px;
     }
