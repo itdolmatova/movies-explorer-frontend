@@ -1,0 +1,71 @@
+.navigation {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navigation__full {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 50px;
+}
+
+.navigation__movies {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.navigation__movies_link {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    text-align: right;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.28;
+}
+
+.navigation__profile {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 24px;
+}
+
+.navigation__profile_link {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.navigation__profile_icon {
+    margin: 0;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    background: #313131;
+    border-radius: 4px;
+}
+
+.navigation__burger_icon {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 44px;
+    height: 44px;
+}
+
+@media screen  and (max-width: 320px) {
+    .navigation__burger_icon {
+        width: 40px;
+        height: 43px;
+    }
+}

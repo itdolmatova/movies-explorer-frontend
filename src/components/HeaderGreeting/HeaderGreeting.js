@@ -4,8 +4,6 @@ import logoPath from '../../images/logo.svg';
 
 function HeaderGreeting(props) {
 
-
-
     return (
         <div className="greeting__container">
             <img className="greeting__logo" alt="Логотип" src={logoPath} />
