@@ -8,7 +8,6 @@ function Form(props) {
                 {props.children(props)}
             </div>
             <button type="submit" className="form__submit-button">{props.buttonText}</button>
-           
         </div>
     );
 }

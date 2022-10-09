@@ -36,6 +36,10 @@
     color: #8B8B8B;
 }
 
+.form__profile-label {
+    
+}
+
 .form__input {
     margin: 0;
     padding: 5px 0 10px;
@@ -48,6 +52,18 @@
     font-weight: 500;
     color: #FFFFFF;
     background-color: #202020;
+}
+
+.form__input:focus {
+    border-bottom-style: 1px solid #4285F4;
+}
+
+.form__profile-input {
+
+}
+
+.form__profile-input:focus {
+    border-bottom-style: 1px solid #4285F4;
 }
 
 .form__input_error {
