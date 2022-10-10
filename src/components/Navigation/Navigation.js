@@ -32,6 +32,10 @@ function Navigation(props) {
                 </Link>
                 <button className="navigation__close-button" src={closeButtonPath} />
             </div>
+            <div className="navigation__loggedout">
+                <button className="navigation__loggedout_register-button">Регистрация</button>
+                <button className="navigation__loggedout_login-button">Войти</button>
+            </div>
         </div >
     );
 }
