@@ -18,7 +18,7 @@
 }
 
 .profile__link {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     color: #EE3465;
     text-align: center;
