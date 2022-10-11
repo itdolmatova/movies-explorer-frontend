@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import logoPath from '../../images/logo.svg';
+import React, { useState } from 'react';
+import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 import NavigationPopup from '../NavigationPopup/NavigationPopup';
+import './Header.css';
 
 function Header(props) {
 
@@ -17,11 +18,13 @@ function Header(props) {
 
     return (
         <>
-        <header className="header">
-            <img className="header__logo" alt="Логотип" src={logoPath} />
-            <Navigation loggedIn={props.loggedIn} handleNavigationPopupOpen={handleNavigationPopupOpen} />            
-        </header>
-        <NavigationPopup isOpen={isNavigationPopupOpen} onClose={handlePopupClose}/>
+            <header className="header">
+                <div className="header__logo">
+                    <Logo />
+                </div>
+                <Navigation loggedIn={props.loggedIn} handleNavigationPopupOpen={handleNavigationPopupOpen} />
+            </header>
+            <NavigationPopup isOpen={isNavigationPopupOpen} onClose={handlePopupClose} />
         </>
     );
 }

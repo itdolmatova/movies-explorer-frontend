@@ -2,6 +2,7 @@ import React from 'react';
 import './HeaderGreeting.css';
 import logoPath from '../../images/logo.svg';
 
+
 function HeaderGreeting(props) {
 
     return (

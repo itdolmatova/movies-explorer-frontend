@@ -233,30 +233,22 @@
 
 
 
-.navigation_visible{
-    visibility: visible;
-}
+
 .navigation_hidden{
-    visibility: hidden;
-}
-
-
-
-.navigation__full_visibility{
-    visibility: visible;
+    display: none;
 }
 
 .navigation__burger_icon_visibility{
-    visibility: hidden;
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
     .navigation__full_visibility{
-        visibility: hidden;
+        display: none;
     }
     
     .navigation__burger_icon_visibility{
-        visibility: visible;
+        display: flex;
     }
 }
 

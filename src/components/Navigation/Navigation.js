@@ -20,7 +20,7 @@ function Navigation(props) {
             </div>
             <img className={`navigation__burger_icon  ${props.loggedIn?"navigation__burger_icon_visibility":"navigation_hidden"}`} alt="Логотип" src={burgerPath} onClick={props.handleNavigationPopupOpen} />
 
-            <div className={`navigation__loggedout  ${props.loggedIn?"navigation_hidden":"navigation_visible"}`}>
+            <div className={`navigation__loggedout  ${props.loggedIn?"navigation_hidden":""}`}>
                 <button className="navigation__loggedout_register-button">Регистрация</button>
                 <button className="navigation__loggedout_login-button">Войти</button>
             </div>
