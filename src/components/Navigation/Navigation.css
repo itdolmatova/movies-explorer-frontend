@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     display: flex;
+    justify-content: space-between;
 }
 
 .navigation_visible{
@@ -12,6 +13,7 @@
     margin: 0;
     padding: 0;
     display: flex;
+    justify-content: space-between;
     gap: 50px;
 }
 
@@ -19,9 +21,22 @@
     margin: 0;
     padding: 0;
     display: flex;
+    justify-content: space-between;
     gap: 20px;
 }
+/*
+@media screen and (max-width: 1200px) {
+    .navigation__movies {
+        padding: 0 0 0 600px;
+    }
+}
 
+@media screen and (max-width: 900px) {
+    .navigation__movies {
+        padding: 0 0 0 450px;
+    }
+}
+*/
 .navigation__movies_link {
     margin: 0;
     padding: 0;
@@ -69,6 +84,7 @@
 .navigation__profile-icon {
     margin: 0;
     padding: 0;
+    gap: 17px;
     width: 30px;
     height: 30px;
     display: flex;
@@ -185,7 +201,7 @@
     text-align: right;
     color: #FFFFFF;
     border: none;
-    background-color: #202020;
+    background-color: #073042;
     transition: opacity 0.5s ease-in 0s;
 }
 
@@ -203,13 +219,13 @@
 
 .navigation__loggedout_login-button {
     margin: 0;
-    padding: 0;
+    padding: 8px 20px;
     display: flex;
     width: 76px;
     height: 32px;
     background: #3DDC84;
     border-radius: 3px;
-    text-align: center;
+    border: none;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;

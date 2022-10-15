@@ -1,10 +1,12 @@
 .navigation__popup {
     margin: 0 auto;
-    padding: 120px 0 0;
+    padding: 159px 0 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     position: absolute;
+    top: 0;
+    right: 0;
     align-items: center;
     width: 520px;
     gap: 521px;

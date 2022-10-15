@@ -1,7 +1,8 @@
 .page {
   min-width: 320px;
+  width: 100%;
   min-height: 100vh;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -18,5 +19,6 @@
 .page__content {
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0;
   position: relative;
 }

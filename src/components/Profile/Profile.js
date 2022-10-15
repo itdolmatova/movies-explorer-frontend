@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import FormProfile from '../FormProfile/FormProfile';
 import './Profile.css';
@@ -10,7 +11,7 @@ function Profile(props) {
             <div className="profile">
                 <h1 className="profile__greeting">Привет, Анастасия!</h1>
                 <FormProfile />
-                <a className="profile__link">Выйти из аккаунта</a>
+                <Link to="/" className="profile__link">Выйти из аккаунта</Link>
             </div>
         </>
     );

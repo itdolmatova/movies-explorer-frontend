@@ -1,13 +1,19 @@
 import React from 'react';
 import Header from '../Header/Header';
-import FormProfile from '../FormProfile/FormProfile';
+import Hero from '../Hero/Hero.js';
+import AboutProject from '../AboutProject/AboutProject.js';
 import './Main.css';
 
 function Main(props) {
     return (
         <>
-            <Header loggedIn={false} />
-            
+            <div className="main">
+                <Header loggedIn={false} />
+                <Hero />
+                <AboutProject />
+                
+
+            </div>
         </>
     );
 }
