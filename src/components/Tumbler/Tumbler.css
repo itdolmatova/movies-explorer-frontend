@@ -1,0 +1,19 @@
+.tumbler__button {
+    width: 36px;
+    height: 20px;
+    background: #3DDC84;
+    border-radius: 20px;
+    position: relative;
+}
+
+.tumbler__icon_on {
+    position: absolute;
+    top: 30%;
+    left: 60%;
+}
+
+.tumbler__icon_off {
+    position: absolute;
+    top: 30%;
+    right: 60%;
+}
