@@ -17,10 +17,14 @@ function AboutProject(props) {
                     </div>
                 </div>
                 <div className="about__scale">
-                    <div className="about__week">1 неделя</div>
-                    <div className="about__weeks">4 недели</div>
-                    <div className="about__back-end">Back-end</div>
-                    <div className="about__front-end">Front-end</div>
+                    <div className="about__scale_container">
+                        <div className="about__scale_week">1 неделя</div>
+                        <div className="about__scale_weeks">4 недели</div>
+                    </div>
+                    <div className="about__scale_container">
+                        <div className="about__scale_back-end">Back-end</div>
+                        <div className="about__scale_front-end">Front-end</div>
+                    </div>
                 </div>
             </div>
         </>
