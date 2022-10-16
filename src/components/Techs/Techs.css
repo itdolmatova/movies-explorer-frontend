@@ -1,5 +1,5 @@
 .techs {
-    background-color: #202020;
+    background-color: #272727;
     margin: 0;
     padding: 100px 70px;
     display: flex;
@@ -85,6 +85,18 @@
 @media screen and (max-width: 768px) {
     .techs__list {
         max-width: 588px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .techs__list {
+        max-width: 588px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .techs__list {
+        max-width: 320px;
     }
 }
 

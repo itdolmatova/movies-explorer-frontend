@@ -1,7 +1,9 @@
 import React from 'react';
+import '../Main/Main.css';
 import './AboutProject.css';
 
-function AboutProject(props) {
+
+function AboutProject() {
     return (
         <section className="about">
             <h1 className="main__title">О проекте</h1>

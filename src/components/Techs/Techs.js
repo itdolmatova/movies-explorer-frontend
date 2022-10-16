@@ -1,7 +1,8 @@
 import React from 'react';
 import './Techs.css';
+import '../Main/Main.css';
 
-function Techs(props) {
+function Techs() {
     return (
         <section className="techs">
             <h1 className="main__title_black">Технологии</h1>
