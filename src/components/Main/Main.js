@@ -4,6 +4,7 @@ import Hero from '../Hero/Hero.js';
 import AboutProject from '../AboutProject/AboutProject.js';
 import Techs from '../Techs/Techs.js';
 import AboutMe from '../AboutMe/AboutMe.js';
+import Footer from '../Footer/Footer.js';
 import './Main.css';
 
 function Main(props) {
@@ -15,6 +16,7 @@ function Main(props) {
                 <AboutProject />
                 <Techs />
                 <AboutMe />
+                <Footer />
             </div>
         </>
     );
