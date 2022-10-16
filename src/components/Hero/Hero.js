@@ -5,10 +5,10 @@ import './Hero.css';
 function Hero(props) {
     return (
         <>
-            <div className="hero__container">
+            <section className="hero__container">
                 <h1 className="hero__title">Учебный проект студента факультета Веб-разработки.</h1>
                 <img className="hero__image" alt="Логотип главной страницы проекта" src={heroPath} />
-            </div>
+            </section>
         </>
     );
 }

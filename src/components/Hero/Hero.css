@@ -1,12 +1,12 @@
 
 
 .hero__container {
-    margin: 0;
+    margin: 0 auto;
     padding: 0 0 60px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
     position: relative;
     background-color: #073042;
 }
@@ -40,16 +40,10 @@
     top: 50px;
     left: 70px;
 }
-/*
-@media screen and (max-width: 1100px) {
-    .hero__title {
-        width: 680px;
-    }
-}
-*/
+
 @media screen and (max-width: 768px) {
     .hero__title {
-        max-width: 680px;
+        max-width: 640px;
         text-align: center;
         top: 300px;
         left: 44px;
@@ -61,10 +55,12 @@
         padding: 0 10px;
         max-width: 300px;
         text-align: center;
+        align-self: center;
         font-size: 31px;
         line-height: 1.26;
         top: 183px;
         left: 10px;
+        width: 100%;
     }
 }
 

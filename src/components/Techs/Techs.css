@@ -1,0 +1,129 @@
+.techs {
+    background-color: #202020;
+    margin: 0;
+    padding: 100px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .techs {
+        padding: 90px 60px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .techs {
+        padding: 70px 14px;
+    }
+}
+
+.techs__title {
+    display: flex;
+    margin: 0;
+    padding: 90px 0 0;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 1.16;
+    text-align: center;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 768px) {
+    .techs__title {
+        padding: 80px 0 0;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .techs__title {
+        padding: 60px 0 0;
+    }
+}
+
+.techs__subtitle {
+    display: flex;
+    margin: 0;
+    padding: 26px 0 100px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.43;
+    text-align: center;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    max-width: 460px;
+}
+
+@media screen and (max-width: 768px) {
+    .techs__subtitle {
+        padding: 22px 0 83px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .techs__subtitle {
+        padding: 24px 0 50px;
+    }
+}
+
+.techs__list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    max-width: 690px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .techs__list {
+        max-width: 588px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .techs__list {
+        max-width: 178px;
+    }
+}
+
+.techs__list-item {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background: #303030;
+    width: 90px;
+    height: 60px;
+    border-radius: 10px; 
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21;
+    text-align: center;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .techs__list-item {
+        width: 84px;
+        height: 57px;
+        font-size: 12px;
+        line-height: 1.25;
+    }
+}
+/*
+@media screen and (max-width: 320px) {
+    .techs__list-item {
+    }
+}*/
+

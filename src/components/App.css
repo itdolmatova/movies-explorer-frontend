@@ -1,15 +1,13 @@
 .page {
   min-width: 320px;
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background: #202020;
+  background-color: #202020;
   font-family: 'Inter', Arial, sans-serif;
-  color: #FFFFFF;
+  color: #FFF;
   /*position: relative;*/
 
   -webkit-font-smoothing: antialiased;
