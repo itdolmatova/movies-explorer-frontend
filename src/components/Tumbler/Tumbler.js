@@ -15,8 +15,8 @@ function Tumbler(props) {
     };
 
     return (
-        <div className="tumbler__button" onClick={handleClick}>
-            <img className={`tumbler__icon ${isOn? "tumbler__icon_on": "tumbler__icon_off"}`} alt="Логотип" src={iconPath} />
+        <div className={`tumbler__button ${isOn? "tumbler__button_on": "tumbler__button_off"}`} onClick={handleClick}>
+            <img className={`tumbler__icon ${isOn? "tumbler__icon_on": "tumbler__icon_off"}`}  src={iconPath} />
         </div>
     );
 }
