@@ -11,7 +11,7 @@ function NavigationPopup(props) {
         <div className={`navigation__popup ${props.isOpen?"navigation__popup_visible":"navigation__popup_hidden"}`}>
                 <div className="navigation__links">
                     <Link to="" className="navigation__link">Главная</Link>
-                    <Link to="movies" className="navigation__link">Фильмы</Link>
+                    <Link to="movies" className="navigation__link navigation__link_active">Фильмы</Link>
                     <Link to="saved" className="navigation__link">Сохраненные фильмы</Link>
                 </div>
                 <Link to="profile" className="navigation__profile">

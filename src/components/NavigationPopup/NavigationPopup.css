@@ -9,15 +9,15 @@
     right: 0;
     align-items: center;
     width: 520px;
-    min-height: 100vh;
+    height: 100vh;
     box-sizing: border-box;
     background-color: #202020;
     z-index: 1;
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 320px) {
     .navigation__popup {
-        padding: 144px 0 48pxpx;
+        padding: 144px 0 48px;
         width: 100%;
     }
 }

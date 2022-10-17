@@ -43,12 +43,18 @@
     padding: 0;
     display: flex;
     text-align: right;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 14px;
-    line-height: 1.28;
+    line-height: 1.29;
     text-decoration: none;
     color: #FFFFFF;
     transition: opacity 0.5s ease-in 0s;
+}
+
+.navigation__movies_link_active {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.29; 
 }
 
 .navigation__movies_link:hover {
@@ -139,7 +145,7 @@
 }
 
 .navigation__link {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     text-decoration: none;
     text-align: center;
@@ -152,10 +158,13 @@
 }
 
 .navigation__link:hover {
-    border-bottom-style: solid 2px #FFFFFF;
-    border-bottom-width: 72px;
     opacity: 0.7;
     cursor: pointer;
+}
+
+.navigation__link_active {
+    border-bottom: solid 2px #FFFFFF;
+    padding: 0 0 7px;
 }
 
 .navigation__close-button {
@@ -182,6 +191,7 @@
     margin: 0;
     padding: 0;
     display: flex;
+    align-items: center;
     gap: 30px;
 }
 
@@ -200,6 +210,7 @@
     line-height: 1.33;
     align-items: center;
     text-align: right;
+    text-decoration: none;
     color: #FFFFFF;
     border: none;
     background-color: #073042;
@@ -220,7 +231,7 @@
 
 .navigation__loggedout_login-button {
     margin: 0;
-    padding: 8px 20px;
+    padding: 0;
     display: flex;
     width: 76px;
     height: 32px;
@@ -231,7 +242,9 @@
     font-size: 12px;
     line-height: 1.33;
     text-align: center;
+    text-decoration: none;
     align-items: center;
+    justify-content: center;
     color: #000000;
     transition: opacity 0.5s ease-in 0s;
 }
