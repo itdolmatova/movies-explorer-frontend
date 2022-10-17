@@ -11,43 +11,51 @@ function Movies(props) {
     let sampleMovies = [
         {
             url: "https://api.nomoreparties.co/uploads/small_stones_in_exile_b2f1b8f4b7.jpeg",
-            duration: "105",
+            duration: "1ч 47м",
             nameRU: "«Роллинг Стоунз» в изгнании",
+            icon: "enabled",
         },
         {
             url: "https://api.nomoreparties.co/uploads/small_stones_in_exile_b2f1b8f4b7.jpeg",
-            duration: "105",
+            duration: "1ч 47м",
             nameRU: "«Роллинг Стоунз» в изгнании",
+            icon: "disabled",
         },
         {
             url: "https://api.nomoreparties.co/uploads/small_stones_in_exile_b2f1b8f4b7.jpeg",
-            duration: "105",
+            duration: "1ч 47м",
             nameRU: "«Роллинг Стоунз» в изгнании",
+            icon: "disabled",
         },
         {
             url: "https://api.nomoreparties.co/uploads/small_stones_in_exile_b2f1b8f4b7.jpeg",
-            duration: "105",
+            duration: "1ч 47м",
             nameRU: "«Роллинг Стоунз» в изгнании",
+            icon: "enabled",
         },
         {
             url: "https://api.nomoreparties.co/uploads/small_stones_in_exile_b2f1b8f4b7.jpeg",
-            duration: "105",
+            duration: "1ч 47м",
             nameRU: "«Роллинг Стоунз» в изгнании",
+            icon: "enabled",
         },
         {
             url: "https://api.nomoreparties.co/uploads/small_stones_in_exile_b2f1b8f4b7.jpeg",
-            duration: "105",
+            duration: "1ч 47м",
             nameRU: "«Роллинг Стоунз» в изгнании",
+            icon: "enabled",
         },
         {
             url: "https://api.nomoreparties.co/uploads/small_stones_in_exile_b2f1b8f4b7.jpeg",
-            duration: "105",
+            duration: "1ч 47м",
             nameRU: "«Роллинг Стоунз» в изгнании",
+            icon: "enabled",
         },
         {
             url: "https://api.nomoreparties.co/uploads/small_stones_in_exile_b2f1b8f4b7.jpeg",
-            duration: "105",
+            duration: "1ч 47м",
             nameRU: "«Роллинг Стоунз» в изгнании",
+            icon: "enabled",
         },
     ];
 
