@@ -161,7 +161,8 @@
     width: 270px;
     height: 327px;
     border-radius: 10px;
-    background-size: contain;
+    background-size: cover;
+    box-sizing: border-box;
     overflow: hidden;
 }
 

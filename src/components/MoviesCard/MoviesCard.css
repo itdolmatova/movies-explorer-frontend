@@ -1,4 +1,9 @@
-.moviescard__container {}
+.moviescard__container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+}
 
 @media screen and (max-width: 768px) {
     .moviescard__container {}
@@ -66,7 +71,6 @@
     opacity: 0.7;
     cursor: pointer;
 }
-
 
 .moviescard__button_enabled {
     background-image: url(../../images/save-button-enabled.svg);

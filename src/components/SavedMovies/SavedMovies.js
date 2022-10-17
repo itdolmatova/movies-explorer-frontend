@@ -30,7 +30,7 @@ function SavedMovies(props) {
 
     return (
         <>
-            <Header />
+            <Header loggedIn={true} />
             <SearchForm />
             <MoviesCardList movies={sampleMovies} />
             <Footer />
