@@ -8,10 +8,10 @@ function SearchForm(props) {
     return (
         <div className="searchform">
             <form className="searchform__container">
-                <input className="searchform__input" />
+                <input className="searchform__input" placeholder="Фильм"/>
                 <button className="searchform__button" />
             </form>
-            <Tumbler />
+            <Tumbler name="Короткометражки" />
             <div className="searchform__underline" />
         </div>
     );
