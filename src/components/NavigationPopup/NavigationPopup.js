@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import profilePath from '../../images/profile-icon.svg';
-import closeButtonPath from '../../images/burger_close-button.svg';
 import './NavigationPopup.css';
 import '../Navigation/Navigation.css'
 
@@ -19,7 +18,7 @@ function NavigationPopup(props) {
                     <h2 className="navigation__profile_link">Аккаунт</h2>
                     <img className="navigation__profile-icon" alt="Логотип" src={profilePath} />
                 </Link>
-                <button className="navigation__popup_close-button" src={closeButtonPath} onClick={props.onClose} />
+                <button className="navigation__popup_close-button" onClick={props.onClose} />
          </div>
     );
 }
