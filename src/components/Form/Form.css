@@ -27,6 +27,18 @@
     border: none;
 }
 
+.form__container_profile{
+    padding: 83px 0 0;
+    min-height: 282px;
+}
+
+.form__input_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 .form__label {
     margin: 0;
     padding: 0;
@@ -36,8 +48,10 @@
     color: #8B8B8B;
 }
 
-.form__profile-label {
-
+.form__label_profile {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 1.18;
 }
 
 .form__input {
@@ -46,7 +60,7 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom-style: 1px solid #424242;
+    border-bottom: 1px solid #424242;
     font-size: 14px;
     line-height: 1.21;
     font-weight: 500;
@@ -55,16 +69,39 @@
 }
 
 .form__input:focus {
-    border-bottom-style: 1px solid #4285F4;
+    border-bottom: 1px solid #4285F4;
 }
 
-.form__profile-input {
 
+.form__input_profile {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 11px;
+    line-height: 1.18;
+    font-weight: 400;
+    background-color: #202020;
+    color: #FFFFFF;
+    text-align: right;
 }
 
-.form__profile-input:focus {
-    border-bottom-style: 1px solid #4285F4;
+.form__input_profile::placeholder{
+    color: #FFFFFF;
+    opacity: 1;
 }
+
+.form__input_profile:focus{
+    outline: none;
+}
+
+.form__input_underline {
+    margin: 6px 0 12px;
+    height: 1px;
+    padding: 0;
+    display: flex;
+    background-color: #424242;
+}
+
 
 .form__input_error {
     margin: 0;
@@ -81,14 +118,25 @@
     padding: 0;
     background-color: #4285F4;
     border-radius: 3px;
+    border: none;
     text-align: center;
     font-size: 14px;
     line-height: 1.2;
     font-weight: 500;
-    font-style: Medium;
-    color: white;
+    color: #FFF;
     width: 100%;
     height: 45px;
+    transition: opacity 0.5s ease-in 0s;
+}
+
+.form__submit-button_inactive {
+    background-color: #F8F8F8;
+    color: #C2C2C2;
+}
+
+.form__submit-button:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 490px) {
@@ -96,4 +144,25 @@
         font-size: 12px;
         line-height: 1.5;
     }
+}
+
+.form__profile_submit-button {
+    margin: 0 auto;
+    width: 100%;
+    height: 16px;
+    padding: 0;
+    background-color: #202020;
+    border-radius: 3px;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: #FFF;
+    transition: opacity 0.5s ease-in 0s;
+}
+
+.form__profile_submit-button:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }

@@ -7,7 +7,7 @@ function Form(props) {
             <div className="form__container">
                 {props.children(props)}
             </div>
-            <button type="submit" className="form__submit-button">{props.buttonText}</button>
+            <button type="submit" className={props.buttonClass?props.buttonClass:"form__submit-button"}>{props.buttonText}</button>
         </div>
     );
 }
