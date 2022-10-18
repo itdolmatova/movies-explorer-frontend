@@ -15,10 +15,10 @@ function Navigation(props) {
                 </div>
                 <Link to="profile" className="navigation__profile">
                     <h2 className="navigation__profile_link">Аккаунт</h2>
-                    <img className="navigation__profile-icon" alt="Логотип профиля" src={profilePath} />
+                    <img className="navigation__profile-icon" alt="Аккаунт" src={profilePath} />
                 </Link>
             </div>
-            <img className={`navigation__burger_icon  ${props.loggedIn?"navigation__burger_icon_visibility":"navigation_hidden"}`} alt="Логотип" src={burgerPath} onClick={props.handleNavigationPopupOpen} />
+            <img className={`navigation__burger_icon  ${props.loggedIn?"navigation__burger_icon_visibility":"navigation_hidden"}`} alt="Меню" src={burgerPath} onClick={props.handleNavigationPopupOpen} />
 
             <div className={`navigation__loggedout  ${props.loggedIn?"navigation_hidden":""}`}>
                 <Link className="navigation__loggedout_register-button" to="/sign-up">Регистрация</Link>

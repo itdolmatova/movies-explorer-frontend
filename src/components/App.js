@@ -1,6 +1,6 @@
 import './App.css';
-import React, { useState } from 'react';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Movies from './Movies/Movies'
 import Profile from './Profile/Profile'
 import Register from './Register/Register'

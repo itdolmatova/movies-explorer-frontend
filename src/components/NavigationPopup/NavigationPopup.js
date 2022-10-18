@@ -16,7 +16,7 @@ function NavigationPopup(props) {
                 </div>
                 <Link to="profile" className="navigation__profile">
                     <h2 className="navigation__profile_link">Аккаунт</h2>
-                    <img className="navigation__profile-icon" alt="Логотип" src={profilePath} />
+                    <img className="navigation__profile-icon" alt="Аккаунт" src={profilePath} />
                 </Link>
                 <button className="navigation__popup_close-button" onClick={props.onClose} />
          </div>

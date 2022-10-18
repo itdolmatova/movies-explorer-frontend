@@ -7,7 +7,7 @@ function Hero(props) {
         <>
             <section className="hero__container">
                 <h1 className="hero__title">Учебный проект студента факультета Веб-разработки.</h1>
-                <img className="hero__image" alt="Логотип главной страницы проекта" src={heroPath} />
+                <img className="hero__image" alt="Пружинка" src={heroPath} />
             </section>
         </>
     );
