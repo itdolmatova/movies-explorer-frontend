@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 768px) {
     .greeting__container {
-        padding: 232px;
+        padding: 232px 0 0;
     }
 }
 
