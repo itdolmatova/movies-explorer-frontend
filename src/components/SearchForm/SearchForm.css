@@ -55,8 +55,17 @@
     width: calc(100% - 10px - 44px);
     border: none;
     box-sizing: border-box;
+    color: #FFF;
 }
 
+.searchform__input::placeholder{
+    color: #FFF;
+    opacity: 1;
+}
+
+.searchform__input:focus{
+    outline: none;
+}
 
 .searchform__button {
     background-image: url(../../images/find.svg);
@@ -71,7 +80,6 @@
     background-color: #202020;
     display: flex;
 }
-
 
 .searchform__button:hover {
     opacity: 0.7;

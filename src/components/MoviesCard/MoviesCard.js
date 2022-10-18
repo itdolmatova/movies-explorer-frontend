@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import './MoviesCard.css';
-import saveBtnDisPath from '../../images/save-button-disabled.svg';
-import saveBtnEnPath from '../../images/save-button-enabled.svg';
-import deleteBtnPath from '../../images/delete-btn.svg';
-
 
 
 function MoviesCard(props) {
@@ -30,7 +26,7 @@ function MoviesCard(props) {
                 <button className={`moviescard__button ${getBtnStyle()}`} alt="кнопка" />
             </div>
 
-            <img className="moviescard__image" alt="Логотип" src={props.url} />
+            <img className="moviescard__image" alt="Картинка" src={props.url} />
         </div>
     );
 }
