@@ -76,16 +76,8 @@
     justify-content: space-between;
     flex-flow: row wrap;
     max-width: 690px;
-    margin: 0;
-    padding: 0;
     list-style-type: none;
     gap: 10px;
-}
-
-@media screen and (max-width: 768px) {
-    .techs__list {
-        max-width: 588px;
-    }
 }
 
 @media screen and (max-width: 768px) {
