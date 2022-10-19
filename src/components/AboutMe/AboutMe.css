@@ -31,10 +31,10 @@
     gap: 49px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 580px) {
     .aboutme__container {
         padding: 60px 0 0;
-        margin: 0 auto;
+        margin: 0;
         flex-direction: column-reverse;
         gap: 40px;
     }
@@ -55,9 +55,8 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 580px) {
     .aboutme__info {
-        max-width: 292px;
         width: 100%;
     }
 }
@@ -163,7 +162,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 580px) {
     .aboutme__github-link {
         padding: 42px 0 0;
     }
@@ -175,9 +174,9 @@
     width: 270px;
     height: 327px;
     border-radius: 10px;
+    align-self: center;
     object-fit: cover;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {
@@ -187,7 +186,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 580px) {
     .aboutme__photo {
         width: 292px;
         height: 352px;
