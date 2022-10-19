@@ -18,7 +18,7 @@ function NavigationPopup(props) {
                     <h2 className="navigation__profile_link">Аккаунт</h2>
                     <img className="navigation__profile-icon" alt="Аккаунт" src={profilePath} />
                 </Link>
-                <button type="submit" className="navigation__popup_close-button" onClick={props.onClose} />
+                <button type="button" className="navigation__popup_close-button" onClick={props.onClose} />
          </div>
     );
 }
