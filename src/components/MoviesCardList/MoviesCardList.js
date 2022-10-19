@@ -13,7 +13,7 @@ function MoviesCardList(props) {
             <div className="moviescardlist__container">
                 {props.movies.map((movie, i) => <MovieCard url={movie.url} name={movie.nameRU} icon={movie.icon} duration={movie.duration} key={i} />)}
             </div>
-            <button className={`moviescardlist__button ${isMoreButnVisible() ? "" : "moviescardlist__button_hidden"}`}>Ещё</button>
+            <button type="submit" className={`moviescardlist__button ${isMoreButnVisible() ? "" : "moviescardlist__button_hidden"}`}>Ещё</button>
         </>
     );
 }

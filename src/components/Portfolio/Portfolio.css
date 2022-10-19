@@ -1,3 +1,7 @@
+.portfolio {
+    list-style-type: none;
+}
+
 .portfolio__link {
     display: flex;
     justify-content: space-between;

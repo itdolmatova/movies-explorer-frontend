@@ -7,12 +7,12 @@ import './Portfolio.css';
 function Portfolio(props) {
 
     return (
-        <>
+        <li className="portfolio">
             <Link to={{ pathname: props.link }} target="_blank" className="portfolio__link">
-                <h2 className="portfolio__text">{props.name}</h2>
+                <h3 className="portfolio__text">{props.name}</h3>
                 <img className="portfolio__img" alt="Стрелочка" src={iconPath} />
             </Link>
-        </>
+        </li>
     );
 }
 

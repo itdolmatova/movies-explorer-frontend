@@ -23,7 +23,7 @@ function MoviesCard(props) {
                     <h2 className="moviescard__title">{props.name}</h2>
                     <p className="moviescard__duration">{props.duration}</p>
                 </div>
-                <button className={`moviescard__button ${getBtnStyle()}`} alt="кнопка" />
+                <button type="submit" className={`moviescard__button ${getBtnStyle()}`} alt="кнопка" />
             </div>
 
             <img className="moviescard__image" alt="Картинка" src={props.url} />

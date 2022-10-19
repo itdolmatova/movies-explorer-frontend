@@ -188,13 +188,19 @@
 
 @media screen and (max-width: 580px) {
     .aboutme__photo {
-        width: 292px;
-        height: 352px;
+        max-width: 292px;
+        max-height: 352px;
     }
 }
 
 .aboutme__list {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.aboutme__portfolio-title {
     margin: 0;
     padding: 100px 0 50px;
     font-weight: 400;
@@ -205,13 +211,13 @@
 }
 
 @media screen and (max-width: 768px) {
-    .aboutme__list {
+    .aboutme__portfolio-title {
         padding: 90px 0 50px;
     }
 }
 
 @media screen and (max-width: 320px) {
-    .aboutme__list {
+    .aboutme__portfolio-title {
         padding: 70px 0 40px;
     }
 }
