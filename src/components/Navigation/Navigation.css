@@ -143,6 +143,12 @@
     gap: 28px;
 }
 
+@media screen and (max-width: 340px) {
+    .navigation__links {
+        width: 100%;
+    }
+}
+
 .navigation__link {
     margin: 0 auto;
     padding: 0;
