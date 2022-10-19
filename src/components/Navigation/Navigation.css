@@ -63,12 +63,12 @@
 }
 
 .navigation__profile {
+    display: flex;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
     gap: 17px;
-    text-decoration: none;
+    align-items: center;
     transition: opacity 0.5s ease-in 0s;
 }
 
@@ -86,19 +86,18 @@
     font-size: 14px;
     line-height: 1.14;
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 .navigation__profile-icon {
     margin: 0;
-    padding: 0;
+    padding: 8px 7px;
     gap: 17px;
-    width: 30px;
-    height: 30px;
     display: flex;
-    background: #313131;
+    background-color: #313131;
+    background-position: center;
+    background-size: 26px 30px;
     border-radius: 4px;
-    color: #FFFFFF;
-    background-size: 30px 30px;
 }
 
 .navigation__burger_icon {
