@@ -45,7 +45,7 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     .hero__title {
         padding: 183px 10px 0;
         max-width: 300px;
@@ -68,7 +68,7 @@
     object-position: center;
 }   
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 790px) {
     .hero__image {
         margin: 140px 44px 70px;
         width: auto;
