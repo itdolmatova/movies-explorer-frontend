@@ -1,4 +1,4 @@
-class Api {
+class MainApi {
     constructor(options) {
         this._baseUrl = options.baseUrl;
     }
@@ -34,63 +34,25 @@ class Api {
             .then(this._checkResponse);
     }
 
-    getCards() {
-        return fetch(this._baseUrl + '/cards', {
-            headers: this._getHeaders(),
-        })
-            .then(this._checkResponse);
-    }
-
-    postCard(name, link) {
-        return fetch(this._baseUrl + '/cards', {
-            method: 'POST',
-            headers: this._getHeaders(),
-            body: JSON.stringify({
-                name: name,
-                link: link
-            })
-        }).then(this._checkResponse);
-    }
-
-    deleteCard(cardId) {
-        return fetch(this._baseUrl + '/cards/' + cardId, {
-            method: 'DELETE',
-            headers: this._getHeaders(),
-        })
-            .then(this._checkResponse);
-    }
-
-    editAvatar(src) {
-        return fetch(this._baseUrl + '/users/me/avatar', {
-            method: 'PATCH',
-            headers: this._getHeaders(),
-            body: JSON.stringify({
-                avatar: src
-            })
-        })
-            .then(this._checkResponse);
-    }
-
-    setLike(cardId) {
-        return fetch(this._baseUrl + `/cards/${cardId}/likes`, {
+    saveMovie(movieId) {
+        return fetch(this._baseUrl + `/cards/${movieId}/likes`, {
             method: 'PUT',
             headers: this._getHeaders(),
         })
             .then(this._checkResponse);
     }
 
-    deleteLike(cardId) {
-        return fetch(this._baseUrl + `/cards/${cardId}/likes`, {
+    deleteMovie(movieId) {
+        return fetch(this._baseUrl + `/cards/${movieId}/likes`, {
             method: 'DELETE',
             headers: this._getHeaders(),
         })
             .then(this._checkResponse);
     }
-    // другие методы работы с API
 }
 
-const mainApi = new Api({
-    baseUrl: '//api.place4orthebeauty.dolmatova.nomoredomains.sbs'
+const mainApi = new MainApi({
+    baseUrl: 'https://api.movies.itdolmatova.nomorepartiesxyz.ru',
   });
 
 export default mainApi;
