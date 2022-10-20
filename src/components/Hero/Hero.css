@@ -1,6 +1,6 @@
 .hero__container {
     margin: 0;
-    padding: 50px 70px 0;
+    padding: 0;
     min-height: 560px;
     display: flex;
     flex-direction: column;
@@ -8,28 +8,24 @@
     align-items: flex-start;
     position: relative;
     background-color: #073042;
-    overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {
     .hero__container {
-        padding: 300px 44px 0;
-        min-height: 544px;
+        min-height: 844px;
         align-items: center;
     }
 }
 
 @media screen and (max-width: 320px) {
     .hero__container {
-        padding: 183px 10px 0;
-        min-height: 447px;
+        min-height: 704px;
     }
 }
 
-
 .hero__title {
     margin: 0;
-    padding: 0;
+    padding: 50px 70px 0;
     align-items: flex-start;
     max-width: 626px;
     text-align: left;
@@ -43,49 +39,51 @@
 
 @media screen and (max-width: 768px) {
     .hero__title {
-        max-width: 640px;
+        padding: 300px 44px 0;
+        max-width: 680px;
         text-align: center;
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
     .hero__title {
-        padding: 0;
+        padding: 183px 10px 0;
         max-width: 300px;
         text-align: center;
         align-self: center;
         font-size: 31px;
         line-height: 1.26;
+        box-sizing: border-box;
         width: 100%;
     }
 }
 
 .hero__image {
-    margin: 0;
     padding: 0;
-    align-items: flex-end;
-    max-width: 722px;
-    max-height: 244px;
-    background-size: cover;
-    position: absolute;
-    top: 256px;
-    left: 488px;
+    margin: 102px 60px 70px auto;
+    align-items: flex-end;  
+    width: 722px;
+    height: 244px;
+    object-fit: cover;
+    object-position: center;
+}   
+
+@media screen and (max-width: 850px) {
+    .hero__image {
+        margin: 140px 44px 70px;
+        width: auto;
+        height: 230px;
+    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 681px) {
     .hero__image {
-        max-width: 680px;
-        max-height: 230px;
-        top: 544px;
-        left: 44px;
+        width: 100%;
     }
 }
 
 @media screen and (max-width: 320px) {
     .hero__image {
-        max-height: 230px;
-        background-size: contain;
-        top: 360px;
-        left: -180px;
+        margin: 60px 0 40px;
     }
 }
