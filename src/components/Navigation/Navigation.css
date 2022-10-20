@@ -120,6 +120,7 @@
         height: 43px;
     }
 }
+/*
 
 .navigation__burger {
     margin: 0 auto;
@@ -133,14 +134,16 @@
     gap: 521px;
     background-color: #202020;
 }
+*/
 
 .navigation__links {
     margin: 0 auto;
     padding: 0;
     display: flex;
     flex-direction: column;
-    width: 340px;
+    align-items: center;
     gap: 28px;
+    list-style-type: none;
 }
 
 @media screen and (max-width: 340px) {

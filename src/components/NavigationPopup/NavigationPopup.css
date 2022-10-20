@@ -1,6 +1,6 @@
 .navigation__popup {
     margin: 0 auto;
-    padding: 159px 0 92px;
+    padding: 159px 90px 92px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -8,7 +8,8 @@
     top: 0;
     right: 0;
     align-items: center;
-    width: 520px;
+    min-width: 68%;
+    max-width: 520px;
     height: 100vh;
     box-sizing: border-box;
     background-color: #202020;
@@ -17,7 +18,7 @@
 
 @media screen and (max-width: 320px) {
     .navigation__popup {
-        padding: 144px 0 48px;
+        padding: 144px 10px 48px;
         width: 100%;
     }
 }
