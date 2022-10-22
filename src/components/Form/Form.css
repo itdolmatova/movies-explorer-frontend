@@ -103,15 +103,16 @@
     background-color: #424242;
 }
 
-
 .form__input_error {
     margin: 0;
     padding: 6px 0 0;
     font-weight: 400;
     font-size: 10px;
     line-height: 1.2;
-    color: #EE3465;
+}
 
+.form__input_error-color {
+    color: #EE3465;
 }
 
 .form__submit-button {
@@ -133,6 +134,7 @@
 .form__submit-button_inactive {
     background-color: #F8F8F8;
     color: #C2C2C2;
+
 }
 
 .form__submit-button:hover {

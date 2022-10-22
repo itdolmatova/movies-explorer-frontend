@@ -4,7 +4,7 @@ class MainApi {
     }
 
     _getHeaders = () => {
-        return  {
+        return {
             "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
         }
@@ -18,34 +18,59 @@ class MainApi {
         return Promise.reject(`Ошибка: ${res.status}`);
     };
 
-    postUserInfo(values) {
+    createUser(name, email, password) {
+        return fetch(this._baseUrl + '/signup', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email, password })
+        })
+            .then(this._checkResponse);
+    };
+
+    login(email, password) {
+        return fetch(this._baseUrl + '/signin', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+            .then(this._checkResponse);
+    };
+
+
+    updateUser(values) {
         return fetch(this._baseUrl + '/users/me', {
             method: 'PATCH',
             headers: this._getHeaders(),
-            body: JSON.stringify (values)
+            body: JSON.stringify(values)
         })
-        .then(this._checkResponse);
+            .then(this._checkResponse);
     }
-    
-    getUserInfo() {
+
+    getUser() {
         return fetch(this._baseUrl + '/users/me', {
             headers: this._getHeaders(),
         })
-        .then(this._checkResponse);
-    }
-    
-    getSavedMovies() {
-        return fetch(this._baseUrl + '/movies', {
-            headers: this._getHeaders(),
-        })
-        .then(this._checkResponse);
+            .then(this._checkResponse);
     }
 
     saveMovie(movie) {
         return fetch(this._baseUrl + `/movies`, {
             method: 'POST',
             headers: this._getHeaders(),
-            body: JSON.stringify (movie)
+            body: JSON.stringify(movie)
+        })
+            .then(this._checkResponse);
+    }
+
+    getSavedMovies() {
+        return fetch(this._baseUrl + '/movies', {
+            headers: this._getHeaders(),
         })
             .then(this._checkResponse);
     }
@@ -61,6 +86,6 @@ class MainApi {
 
 const mainApi = new MainApi({
     baseUrl: 'https://api.movies.itdolmatova.nomorepartiesxyz.ru',
-  });
+});
 
 export default mainApi;
