@@ -24,26 +24,34 @@ class MainApi {
             headers: this._getHeaders(),
             body: JSON.stringify (values)
         })
-            .then(this._checkResponse);
+        .then(this._checkResponse);
     }
-
+    
     getUserInfo() {
         return fetch(this._baseUrl + '/users/me', {
             headers: this._getHeaders(),
         })
-            .then(this._checkResponse);
+        .then(this._checkResponse);
+    }
+    
+    getSavedMovies() {
+        return fetch(this._baseUrl + '/movies', {
+            headers: this._getHeaders(),
+        })
+        .then(this._checkResponse);
     }
 
-    saveMovie(movieId) {
-        return fetch(this._baseUrl + `/cards/${movieId}/likes`, {
-            method: 'PUT',
+    saveMovie(movie) {
+        return fetch(this._baseUrl + `/movies`, {
+            method: 'POST',
             headers: this._getHeaders(),
+            body: JSON.stringify (movie)
         })
             .then(this._checkResponse);
     }
 
     deleteMovie(movieId) {
-        return fetch(this._baseUrl + `/cards/${movieId}/likes`, {
+        return fetch(this._baseUrl + `/movies/${movieId}`, {
             method: 'DELETE',
             headers: this._getHeaders(),
         })

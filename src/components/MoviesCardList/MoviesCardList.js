@@ -11,7 +11,7 @@ function MoviesCardList(props) {
     return (
         <>
             <div className="moviescardlist__container">
-                {props.movies.map((movie, i) => <MovieCard url={movie.url} name={movie.nameRU} icon={movie.icon} duration={movie.duration} key={i} />)}
+                {props.movies.map((movie, i) => <MovieCard data={movie} key={movie.movieId} handleIconClick={props.handleIconClick} />)}
             </div>
             <button type="button" className={`moviescardlist__button ${isMoreButnVisible() ? "" : "moviescardlist__button_hidden"}`}>Ещё</button>
         </>

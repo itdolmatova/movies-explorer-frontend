@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Movies from './Movies/Movies'
 import Profile from './Profile/Profile'
@@ -8,8 +8,21 @@ import SavedMovies from './SavedMovies/SavedMovies'
 import Login from './Login/Login'
 import NotFound from './NotFound/NotFound'
 import Main from './Main/Main'
+import ErrorPopup from './ErrorPopup/ErrorPopup'
 
 function App() {
+  const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function handleError(message) {
+    setErrorMessage(message);
+    setErrorPopupOpen(true);
+  }
+  
+  function closeErrorPopup (){
+    setErrorPopupOpen(false);
+  }
+
   return (
     <div className="page">
       <div className="page__content">
@@ -25,7 +38,7 @@ function App() {
           </Route>
 
           <Route exact path="/movies">
-            <Movies />
+            <Movies errorHandler={handleError}/>
           </Route>
 
           <Route exact path="/saved">
@@ -47,6 +60,7 @@ function App() {
 
         </Switch>
 
+        <ErrorPopup isOpen={isErrorPopupOpen} message={errorMessage} onClose={closeErrorPopup}/>
       </div>
 
 

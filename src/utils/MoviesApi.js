@@ -1,3 +1,5 @@
+import { MOVIES_URL } from "./Constant";
+
 class MoviesApi {
     constructor(options) {
         this._baseUrl = options.baseUrl;
@@ -5,7 +7,6 @@ class MoviesApi {
 
     _getHeaders = () => {
         return  {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
         }
     }
@@ -19,7 +20,7 @@ class MoviesApi {
     };
 
     getMovies() {
-        return fetch(this._baseUrl + '/movies', {
+        return fetch(this._baseUrl + '/beatfilm-movies', {
             headers: this._getHeaders(),
         })
             .then(this._checkResponse);
@@ -27,7 +28,7 @@ class MoviesApi {
 }
 
 const moviesApi = new MoviesApi({
-    baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
+    baseUrl: MOVIES_URL,
   });
 
 export default moviesApi;   
