@@ -43,7 +43,7 @@ function App() {
           </Route>
 
           <Route exact path="/saved">
-            <SavedMovies />
+            <SavedMovies errorHandler={handleError}/>
           </Route>
 
           <Route exact path="/profile">
