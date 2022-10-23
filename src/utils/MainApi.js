@@ -13,8 +13,10 @@ class MainApi {
     _checkResponse = (res) => {
         if (res.ok) {
             return res.json();
+        } else if (res.status === 409) {
+            return res.json().then((body) => Promise.reject(body.message))
         }
-
+       
         return Promise.reject(`Ошибка: ${res.status}`);
     };
 
