@@ -13,7 +13,7 @@ class MainApi {
     _checkResponse = (res) => {
         if (res.ok) {
             return res.json();
-        } else if (res.status === 409) {
+        } else if (res.status === 409 || res.status === 401 || res.status === 404 || res.status === 400) {
             return res.json().then((body) => Promise.reject(body.message))
         }
        

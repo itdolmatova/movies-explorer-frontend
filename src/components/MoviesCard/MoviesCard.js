@@ -6,8 +6,8 @@ function MoviesCard(props) {
 
     const [icon, setIcon] = useState(props.data.icon);
 
-    function getBtnStyle(){
-        if (icon === "enabled"){
+    function getBtnStyle() {
+        if (icon === "enabled") {
             return "moviescard__button_enabled";
         } else if (icon === "disabled") {
             return "moviescard__button_disabled";
@@ -16,11 +16,16 @@ function MoviesCard(props) {
         }
     }
     function calcDuration(value) {
-        return `${Math.floor(value/60)}ч ${value%60}м`
+        return `${Math.floor(value / 60)}ч ${value % 60}м`
     }
 
-    function handleClick(){
-        props.handleIconClick(props.data);
+    function setIconState(state) {
+        setIcon(state);
+        props.data.icon = state;
+    }
+
+    function handleClick() {
+        props.handleIconClick(props.data, setIconState);
     }
 
     return (

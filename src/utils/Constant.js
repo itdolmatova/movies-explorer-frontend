@@ -1,6 +1,7 @@
 export const MOVIES_URL = 'https://api.nomoreparties.co';
 export const ERR_MOVIES_LOADING = "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
 export const ERR_REGISTER_UNKNOWN = "При регистрации пользователя произошла ошибка.";
+export const ERR_LOGIN_UNKNOWN = "При авторизации произошла ошибка.";
 
 /* sign-in
 
