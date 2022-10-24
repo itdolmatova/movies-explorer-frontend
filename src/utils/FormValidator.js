@@ -25,13 +25,11 @@ export function useForm() {
 
 //хук управления формой и валидации формы
 export function useFormWithValidation() {
-  console.log("useFormWithValidation called");
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
 
   const handleChange = (event) => {
-    console.log("errors ", errors)
     const target = event.target;
     const name = target.name;
     const value = target.value;
@@ -46,7 +44,6 @@ export function useFormWithValidation() {
 
   const resetForm = useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {
-      console.log("resetForm")
       setValues(newValues);
       setErrors(newErrors);
       setIsValid(newIsValid);
