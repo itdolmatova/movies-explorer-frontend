@@ -34,10 +34,15 @@ function Movies(props) {
         }
     }
 
+    function handleSearch(filter) {
+        console.log(filter);
+
+    }
+
     return (
         <>
             <Header loggedIn={true} />
-            <SearchForm />
+            <SearchForm handleSearch={handleSearch} storageName="movies" />
             <MoviesCardList movies={movies} handleIconClick={handleIconClick} />
             <Footer />
         </>
