@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from '../../utils/FormValidator';
 import Tumbler from '../Tumbler/Tumbler';
 import './SearchForm.css';
@@ -24,6 +24,12 @@ function SearchForm(props) {
 
     const { values, handleChange, setValues } = useForm();
     const [isShort, setIsShort] = useState(retrieveFilter().shortMovie);
+
+    useEffect(() => {
+        const filter = retrieveFilter();
+        console.log("effect search", filter);
+        props.handleSearch(filter);
+    }, []);
 
     function search(filter){
         props.handleSearch(filter);

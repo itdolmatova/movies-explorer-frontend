@@ -8,6 +8,7 @@ import { ERR_MOVIES_LOADING } from '../../utils/Constant';
 
 function SavedMovies(props) {
     const [movies, setMovies] = useState([]);
+    const [filter, setFilter] = useState({});
 
     useEffect(() => {
         mainApi.getSavedMovies().then(movies => setMovies(movies));
@@ -20,29 +21,28 @@ function SavedMovies(props) {
     }
 
     function handleSearch(filter) {
-        console.log(filter);
-        const newMovies = movies.map(movie => {
-            movie.hidden = false;
+        setFilter(filter);
+    }
 
+    function getFilteredMovies() {
+        return movies.filter(movie => {
             if (filter.movieName && filter.movieName.length > 0) {
                 const movNameIncludes = movie.nameRU.toLowerCase().includes(filter.movieName.toLowerCase()) || movie.nameEN.toLowerCase().includes(filter.movieName.toLowerCase());
-                movie.hidden = !movNameIncludes;
+                if (!movNameIncludes) return false;
             }
 
             if (filter.shortMovie === true && movie.duration > 40) {
-                movie.hidden = true;
+                return false;
             }
-            return movie
+            return true;
         });
-        console.log(newMovies);
-        setMovies(newMovies);
     }
 
     return (
         <>
             <Header loggedIn={true} />
-            <SearchForm handleSearch={handleSearch}  storageName="saved" />
-            <MoviesCardList movies={movies} handleIconClick={handleIconClick} />
+            <SearchForm handleSearch={handleSearch} storageName="saved" />
+            <MoviesCardList movies={getFilteredMovies()} handleIconClick={handleIconClick} />
             <Footer />
         </>
     );
