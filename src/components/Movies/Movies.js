@@ -6,20 +6,25 @@ import Footer from '../Footer/Footer';
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { mapMovie, prepareMovieToApi, chooseIcon } from '../../utils/Mapper';
+import { useWindowSize } from '../../utils/WindowSize';
 import { ERR_MOVIES_LOADING } from '../../utils/Constant';
+import Preloader from '../Preloader/Preloader';
 
 
 function Movies(props) {
 
     const [movies, setMovies] = useState([]);
+    const [isPreloaderVisible, setIsPreloaderVisible] = useState(false);
+    const size = useWindowSize();
 
     useEffect(() => {
+
         const moviesPromise = moviesApi.getMovies().then(movies => movies.map(v => mapMovie(v)));
         const savedMoviesPromise = mainApi.getSavedMovies();
 
         Promise.all([moviesPromise, savedMoviesPromise])
-            .then(([movies, savedMovies]) => movies.map(movie => chooseIcon(movie, savedMovies)))
-            .then(movies => setMovies(movies));
+            .then(([movies, savedMovies]) => movies.map(movie => chooseIcon(movie, savedMovies)));
+            //.then(movies => setMovies(movies));
     }, []);
 
     function handleIconClick(movie, setIconState) {
@@ -35,15 +40,27 @@ function Movies(props) {
     }
 
     function handleSearch(filter) {
-        console.log(filter);
+        setIsPreloaderVisible(true);
+       //load movies from api 
+       //filter movies 
+       //save movies to local storage 
+       //put to setMovies() first n films 
+        console.log("movies handleSearch", filter);
 
+    }
+
+    function handleMoreBtnClick(){
+        //load more or hide btn 
+        console.log("width", size.width);
     }
 
     return (
         <>
             <Header loggedIn={true} />
             <SearchForm handleSearch={handleSearch} storageName="movies" />
-            <MoviesCardList movies={movies} handleIconClick={handleIconClick} />
+            {isPreloaderVisible && <Preloader/>}
+            <MoviesCardList movies={movies} handleIconClick={handleIconClick}
+                 isMoreButnVisible={true} handleMoreBtnClick={handleMoreBtnClick}/>
             <Footer />
         </>
     );
