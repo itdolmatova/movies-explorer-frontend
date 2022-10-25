@@ -48,9 +48,9 @@ function Movies(props) {
         }
         const initialSize = countInitialSize();
         const firstMovies = movies.slice(0, initialSize);
-        if(movies.length > initialSize) setIsMoreButnVisible(true);
+        if (movies.length > initialSize) setIsMoreButnVisible(true);
         setMovies(firstMovies);
-        setLastIndex(initialSize);
+        setLastIndex(movies.length);
     }
 
     function handleSearch(filter) {
@@ -104,9 +104,9 @@ function Movies(props) {
         const storageMovies = JSON.parse(localStorage.getItem('moviesBeatfilm'));
         const howMuchAdd = (props.size.width >= 1280) ? 3 : 2;
         const newMovies = movies.concat(storageMovies.slice(lastIndex, lastIndex + howMuchAdd));
-        if(newMovies.length <= lastIndex + howMuchAdd) setIsMoreButnVisible(false);
+        if (storageMovies.length === newMovies.length) setIsMoreButnVisible(false);
         setMovies(newMovies);
-        setLastIndex(lastIndex + howMuchAdd);
+        setLastIndex(newMovies.length);
     }
 
     return (
