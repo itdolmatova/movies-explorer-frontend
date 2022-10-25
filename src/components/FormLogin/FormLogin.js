@@ -4,7 +4,6 @@ import { useFormWithValidation } from '../../utils/FormValidator';
 import mainApi from '../../utils/MainApi';
 import { ERR_LOGIN_UNKNOWN } from '../../utils/Constant';
 import { useHistory } from 'react-router-dom';
-import { handleLogin } from '../../utils/Auth';
 
 function FormLogin(props) {
 
@@ -15,7 +14,7 @@ function FormLogin(props) {
     function login(evt) {
         evt.preventDefault();
         mainApi.login(values.email, values.password)
-        .then((res) => handleLogin(res))
+        .then((res) => props.handleLogin(res.token))
         .then(() => history.push('/movies'))
         .catch((err) => {setErrorMessage(ERR_LOGIN_UNKNOWN + " " + err)});
     }

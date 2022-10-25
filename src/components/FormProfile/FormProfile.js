@@ -4,8 +4,6 @@ import Form from '../Form/Form';
 import { useFormWithValidation } from '../../utils/FormValidator';
 import mainApi from '../../utils/MainApi';
 import { ERR_PROFILE_UNKNOWN } from '../../utils/Constant';
-import { useHistory } from 'react-router-dom';
-import { handleProfile } from '../../utils/Auth';
 
 function FormProfile(props) {
 
@@ -22,8 +20,7 @@ function FormProfile(props) {
     }
 
     function isFieldsChanged(){
-        console.log(values, currentUser);
-        return values.email && values.email !== currentUser.email || values.name && values.name !== currentUser.name;
+        return (values.email && values.email !== currentUser.email) || (values.name && values.name !== currentUser.name);
     }
 
     function renderForm(props) {

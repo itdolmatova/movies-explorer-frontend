@@ -4,7 +4,6 @@ import { useFormWithValidation } from '../../utils/FormValidator';
 import mainApi from '../../utils/MainApi';
 import { ERR_REGISTER_UNKNOWN } from '../../utils/Constant';
 import { useHistory } from 'react-router-dom';
-import { handleLogin } from '../../utils/Auth';
 
 
 function FormRegister(props) {
@@ -16,7 +15,7 @@ function FormRegister(props) {
         evt.preventDefault();
         mainApi.createUser(values.name, values.email, values.password)
         .then(() => mainApi.login(values.email, values.password))
-        .then((res) => handleLogin(res))
+        .then((res) => props.handleLogin(res.token))
         .then(() => history.push('/movies'))
         .catch((err) => {setErrorMessage(ERR_REGISTER_UNKNOWN+ " " + err)});
     }

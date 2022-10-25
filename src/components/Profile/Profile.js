@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import FormProfile from '../FormProfile/FormProfile';
 import './Profile.css';
-import { handleLogout } from '../../utils/Auth';
 
 function Profile(props) {
 
     const currentUser = React.useContext(CurrentUserContext);
     function handleLogoutClick() {
-        handleLogout();
+        props.handleLogout();
     }
 
     return (

@@ -19,30 +19,33 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [currentUser, setCurrentUser] = useState({ name: "", email: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [movies, setMovies] = useState([]);
   const history = useHistory();
 
+  function loadUserData(token) {
+    return mainApi.getUser().then((res) => {
+      setCurrentUser(res);
+      setIsLoggedIn(true);
+    });
+  }
 
   React.useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      mainApi.getUser().then((res) => {
-        setCurrentUser(res);
-        setIsLoggedIn(true);
-        history.push('/movies');
-      }).catch(err => console.log(err));
+      loadUserData(token).
+        then(() => history.push('/movies'))
+        .catch(err => handleError(err));
     }
-  }, [])
+  }, []);
 
+  function handleLogin(token) {
+    localStorage.setItem('token', token);
+    return loadUserData(token);
+  }
 
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      moviesApi.getMovies().then(movies => {
-        setMovies(movies);
-      }).catch(err => console.log(err));
-    }
-  }, [isLoggedIn])
-
+  function handleLogout() {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+  }
 
   function handleError(message) {
     setErrorMessage(message);
@@ -56,47 +59,45 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-      <div className="page__content">
+        <div className="page__content">
 
-        <Switch>
-
-          <Route exact path="/404">
-            <NotFound />
-          </Route>
-
-          <Route exact path="/">
-            <Main />
-          </Route>
-
-          <Route exact path="/movies">
-            <Movies errorHandler={handleError} />
-          </Route>
-
-          <Route exact path="/saved">
-            <SavedMovies errorHandler={handleError} />
-          </Route>
-
-          <Route exact path="/profile">
-            <Profile setCurrentUser={setCurrentUser}/>
-          </Route>
-
-          <Route path="/sign-in">
-            <Login />
-          </Route>
-
-          <Route path="/sign-up">
-            <Register />
-          </Route>
+          <Switch>
 
 
-        </Switch>
+            <Route exact path="/">
+              <Main />
+            </Route>
 
-        <ErrorPopup isOpen={isErrorPopupOpen} message={errorMessage} onClose={closeErrorPopup} />
-      </div>
+            <ProtectedRoute path="/movies" loggedIn={isLoggedIn} component={Movies} errorHandler={handleError} />
 
-      </CurrentUserContext.Provider>
+            <ProtectedRoute path="/saved" loggedIn={isLoggedIn} component={SavedMovies} errorHandler={handleError} />
 
-    </div>
+            <ProtectedRoute path="/profile" loggedIn={isLoggedIn} component={Profile} setCurrentUser={setCurrentUser} handleLogout={handleLogout} />
+
+            <Route path="/sign-in">
+              <Login handleLogin={handleLogin} />
+            </Route>
+
+            <Route path="/sign-up">
+              <Register handleLogin={handleLogin} />
+            </Route>
+
+            <Route exact path="/404">
+              <NotFound />
+            </Route>
+
+            <Route path="*">
+              <NotFound />
+            </Route>
+
+          </Switch>
+
+          <ErrorPopup isOpen={isErrorPopupOpen} message={errorMessage} onClose={closeErrorPopup} />
+        </div>
+
+      </CurrentUserContext.Provider >
+
+    </div >
   );
 }
 
