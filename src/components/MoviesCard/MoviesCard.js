@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './MoviesCard.css';
 
 
@@ -19,9 +20,10 @@ function MoviesCard(props) {
         return `${Math.floor(value / 60)}ч ${value % 60}м`
     }
 
-    function setIconState(state) {
+    function setIconState(state, movie) {
         setIcon(state);
         props.data.icon = state;
+        if(movie) props.data._id = movie._id;
     }
 
     function handleClick() {
@@ -38,6 +40,7 @@ function MoviesCard(props) {
                 <button type="button" className={`moviescard__button ${getBtnStyle()}`} alt="кнопка" onClick={handleClick} />
             </div>
 
+            <Link to={{pathname: props.data.trailer}} className="moviescard__link" target="_blank" />
             <img className="moviescard__image" alt="Картинка" src={props.data.image} />
         </div>
     );

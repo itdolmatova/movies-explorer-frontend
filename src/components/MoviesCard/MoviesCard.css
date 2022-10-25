@@ -3,6 +3,7 @@
     flex-direction: column;
     box-sizing: border-box;
     background-color: #222222;
+    position: relative;
 }
 
 @media screen and (max-width: 768px) {
@@ -64,6 +65,7 @@
     border: none;
     background-color: #202020;
     display: flex;
+    z-index: 2;
 }
 
 
@@ -83,3 +85,27 @@
 .moviescard__button_delete {
     background-image: url(../../images/delete-btn.svg);
 }
+.moviescard__link {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+/*
+
+.moviescard__image {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    object-fit: cover;
+    box-sizing: border-box;
+    background-position: center;
+    background-size: cover;
+
+    /*object-fit: cover;
+    align-self: center;
+    */
+

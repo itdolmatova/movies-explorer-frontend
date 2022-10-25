@@ -23,7 +23,7 @@ function Movies(props) {
     function handleIconClick(movie, setIconState) {
         if (movie.icon === "disabled") {
             mainApi.saveMovie(prepareMovieToApi(movie))
-                .then((res) => setIconState("enabled"))
+                .then((res) => setIconState("enabled", res))
                 .catch((err) => props.errorHandler(ERR_MOVIES_LOADING));
         } else {
             mainApi.deleteMovie(movie._id)
