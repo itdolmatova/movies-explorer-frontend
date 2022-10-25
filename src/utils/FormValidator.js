@@ -8,6 +8,13 @@ function validateEmail(value) {
     return "Некорректный email";
   }
 }
+function validateName(value) {
+  if (value.match(/^[a-zа-яеёА-ЯЕЁ -]*$/i)) {
+    return "";
+  } else {
+    return "Поле Имя может содержать только латиницу, кириллицу, пробел или дефис.";
+  }
+}
 
 //хук управления формой
 export function useForm() {
@@ -36,6 +43,9 @@ export function useFormWithValidation() {
     let validationMessage = target.validationMessage
     if(target.type === "email" && !validationMessage) {
       validationMessage = validateEmail(value);
+    } 
+    if(target.name === "name" && !validationMessage) {
+      validationMessage = validateName(value);
     } 
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: validationMessage });

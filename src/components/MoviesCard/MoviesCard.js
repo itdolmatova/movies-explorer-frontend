@@ -40,7 +40,7 @@ function MoviesCard(props) {
                 <button type="button" className={`moviescard__button ${getBtnStyle()}`} alt="кнопка" onClick={handleClick} />
             </div>
 
-            <Link to={{pathname: props.data.trailer}} className="moviescard__link" target="_blank" />
+            <Link to={{pathname: props.data.trailerLink}} className="moviescard__link" target="_blank" />
             <img className="moviescard__image" alt="Картинка" src={props.data.image} />
         </div>
     );

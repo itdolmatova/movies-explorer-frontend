@@ -7,11 +7,11 @@ export const mapMovie = (v) => {
         year: v.year,
         description: v.description,
         image: `${MOVIES_URL}${v.image.url}`,
-        trailer: v.trailerLink,
+        trailerLink: v.trailerLink,
         nameRU: v.nameRU,
         nameEN: v.nameEN,
         thumbnail: `${MOVIES_URL}${v.image.formats.thumbnail.url}`,
-        movieId: v.id.toString(),
+        movieId: v.id,
     };
 }
 
@@ -26,6 +26,6 @@ export const chooseIcon = (movie, savedMovies) => {
     return movie;
 }
 
-export const prepareMovieToApi = ({ country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId }) => {
-    return { country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId };
+export const prepareMovieToApi = ({ country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId }) => {
+    return { country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId };
 }
