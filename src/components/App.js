@@ -10,8 +10,8 @@ import NotFound from './NotFound/NotFound'
 import Main from './Main/Main'
 import ErrorPopup from './ErrorPopup/ErrorPopup';
 import mainApi from '../utils/MainApi';
-import moviesApi from '../utils/MoviesApi';
 import { CurrentUserContext } from '../context/CurrentUserContext';
+import { useWindowSize } from '../utils/WindowSize';
 import './App.css';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: "", email: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const history = useHistory();
+  const size = useWindowSize();
 
   function loadUserData(token) {
     return mainApi.getUser().then((res) => {
@@ -31,8 +32,8 @@ function App() {
   React.useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      loadUserData(token).
-        then(() => history.push('/movies'))
+      loadUserData(token)
+        .then(() => history.push('/movies'))
         .catch(err => handleError(err));
     }
   }, []);
@@ -68,7 +69,7 @@ function App() {
               <Main />
             </Route>
 
-            <ProtectedRoute path="/movies" loggedIn={isLoggedIn} component={Movies} errorHandler={handleError} />
+            <ProtectedRoute path="/movies" loggedIn={isLoggedIn} component={Movies} errorHandler={handleError} size={size}/>
 
             <ProtectedRoute path="/saved" loggedIn={isLoggedIn} component={SavedMovies} errorHandler={handleError} />
 
