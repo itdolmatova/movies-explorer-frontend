@@ -1,0 +1,48 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 34px 0 70px;
+}
+
+.profile__greeting {
+    margin: 0;
+    padding: 40px 0 40px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.21;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 320px) {
+    .profile__greeting {
+        padding: 50px 0 80px;
+    }
+}
+
+.profile__link {
+    margin: 0 auto;
+    padding: 16px 0 0;
+    display: flex;
+    color: #EE3465;
+    text-decoration: none;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.23;
+    transition: opacity 0.5s ease-in 0s;
+}
+
+.profile__link:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {
+    .profile__link-button {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+}
