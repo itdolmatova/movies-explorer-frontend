@@ -12,6 +12,7 @@ import ErrorPopup from './ErrorPopup/ErrorPopup';
 import mainApi from '../utils/MainApi';
 import { CurrentUserContext } from '../context/CurrentUserContext';
 import { useWindowSize } from '../utils/WindowSize';
+import {STOR_TOKEN, STOR_MOVIES_FILTER, STOR_SAVED_FILTER, STOR_MOVIES} from '../utils/Constant';
 import './App.css';
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
   }
 
   React.useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(STOR_TOKEN);
     if (token) {
       loadUserData(token)
         .then(() => history.push('/movies'))
@@ -39,12 +40,15 @@ function App() {
   }, []);
 
   function handleLogin(token) {
-    localStorage.setItem('token', token);
+    localStorage.setItem(STOR_TOKEN, token);
     return loadUserData(token);
   }
 
   function handleLogout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem(STOR_TOKEN);
+    localStorage.removeItem(STOR_MOVIES_FILTER);
+    localStorage.removeItem(STOR_SAVED_FILTER);
+    localStorage.removeItem(STOR_MOVIES);
     setIsLoggedIn(false);
   }
 

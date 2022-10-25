@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { mapMovie, prepareMovieToApi, chooseIcon } from '../../utils/Mapper';
-import { ERR_MOVIES_LOADING } from '../../utils/Constant';
+import { ERR_MOVIES_LOADING, STOR_MOVIES_FILTER, STOR_MOVIES } from '../../utils/Constant';
 import Preloader from '../Preloader/Preloader';
 import { distance } from 'fastest-levenshtein';
 
@@ -33,7 +33,7 @@ function Movies(props) {
     }
 
     function saveMoviesToStorage(movies) {
-        localStorage.setItem("moviesBeatfilm", JSON.stringify(movies));
+        localStorage.setItem(STOR_MOVIES, JSON.stringify(movies));
     }
 
     function showFirstMovies(movies) {
@@ -101,7 +101,7 @@ function Movies(props) {
     }
 
     function handleMoreBtnClick() {
-        const storageMovies = JSON.parse(localStorage.getItem('moviesBeatfilm'));
+        const storageMovies = JSON.parse(localStorage.getItem(STOR_MOVIES));
         const howMuchAdd = (props.size.width >= 1280) ? 3 : 2;
         const newMovies = movies.concat(storageMovies.slice(lastIndex, lastIndex + howMuchAdd));
         if (storageMovies.length === newMovies.length) setIsMoreButnVisible(false);
@@ -112,7 +112,7 @@ function Movies(props) {
     return (
         <>
             <Header loggedIn={true} />
-            <SearchForm handleSearch={handleSearch} storageName="moviesFilter" />
+            <SearchForm handleSearch={handleSearch} storageName={STOR_MOVIES_FILTER} />
             {isPreloaderVisible && <Preloader />}
             <MoviesCardList movies={movies} handleIconClick={handleIconClick}
                 isMoreButnVisible={isMoreButnVisible} handleMoreBtnClick={handleMoreBtnClick} />

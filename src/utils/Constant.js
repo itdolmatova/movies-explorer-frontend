@@ -3,6 +3,10 @@ export const ERR_MOVIES_LOADING = "Во время запроса произош
 export const ERR_REGISTER_UNKNOWN = "При регистрации пользователя произошла ошибка.";
 export const ERR_LOGIN_UNKNOWN = "При авторизации произошла ошибка.";
 export const ERR_PROFILE_UNKNOWN = "При обновлении профиля произошла ошибка.";
+export const STOR_TOKEN = "token";
+export const STOR_MOVIES_FILTER = "moviesFilter";
+export const STOR_SAVED_FILTER = "savedFilter";
+export const STOR_MOVIES = "moviesBeatfilm";
 
 /* sign-in
 

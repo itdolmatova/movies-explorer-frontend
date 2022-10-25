@@ -1,3 +1,5 @@
+import { STOR_TOKEN } from '../utils/Constant';
+
 class MainApi {
     constructor(options) {
         this._baseUrl = options.baseUrl;
@@ -5,7 +7,7 @@ class MainApi {
 
     _getHeaders = () => {
         return {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${localStorage.getItem(STOR_TOKEN)}`,
             'Content-Type': 'application/json'
         }
     }
