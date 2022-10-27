@@ -58,3 +58,14 @@
 .moviescardlist__button_hidden {
     visibility: hidden;
 }
+
+.moviescardlist__no-results {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 500;
+}

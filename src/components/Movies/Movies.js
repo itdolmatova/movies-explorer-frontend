@@ -8,9 +8,7 @@ import mainApi from '../../utils/MainApi';
 import { mapMovie, prepareMovieToApi, chooseIcon } from '../../utils/Mapper';
 import { ERR_MOVIES_LOADING, STOR_MOVIES_FILTER, STOR_MOVIES } from '../../utils/Constant';
 import Preloader from '../Preloader/Preloader';
-import { distance } from 'fastest-levenshtein';
-
-
+//import { distance } from 'fastest-levenshtein';
 
 function Movies(props) {
 
@@ -18,6 +16,7 @@ function Movies(props) {
     const [isPreloaderVisible, setIsPreloaderVisible] = useState(false);
     const [lastIndex, setLastIndex] = useState(0);
     const [isMoreButnVisible, setIsMoreButnVisible] = useState(false);
+    const [isNoMovies, setIsNoMovies] = useState(false);
 
 
     function handleIconClick(movie, setIconState) {
@@ -51,10 +50,16 @@ function Movies(props) {
         if (movies.length > initialSize) setIsMoreButnVisible(true);
         setMovies(firstMovies);
         setLastIndex(movies.length);
+        if (movies.length === 0) {
+            setIsNoMovies(true);
+        } else {
+            setIsNoMovies(false);
+        }
     }
 
     function handleSearch(filter) {
         console.log(filter);
+        setMovies([]);
         setIsPreloaderVisible(true);
 
         const moviesPromise = moviesApi.getMovies()
@@ -71,9 +76,11 @@ function Movies(props) {
                     return movies;
                 }
             });
+
         const savedMoviesPromise = mainApi.getSavedMovies();
 
         const filterStr = filter.movieName ? filter.movieName.toLowerCase() : "";
+
         Promise.all([moviesPromise, savedMoviesPromise])
             .then(([movies, savedMovies]) => movies.map(movie => chooseIcon(movie, savedMovies)))
             .then((movies) => {
@@ -89,7 +96,7 @@ function Movies(props) {
                 }
             })
             .then((movies) => {
-                return movies.filter((m) => {return m.show;})
+                return movies.filter((m) => { return m.show; })
             })
             .then(movies => {
                 saveMoviesToStorage(movies);
@@ -113,7 +120,7 @@ function Movies(props) {
             <SearchForm handleSearch={handleSearch} storageName={STOR_MOVIES_FILTER} />
             {isPreloaderVisible && <Preloader />}
             <MoviesCardList movies={movies} handleIconClick={handleIconClick}
-                isMoreButnVisible={isMoreButnVisible} handleMoreBtnClick={handleMoreBtnClick} />
+                isMoreButnVisible={isMoreButnVisible} isNoMovies={isNoMovies} handleMoreBtnClick={handleMoreBtnClick} />
             <Footer />
         </>
     );

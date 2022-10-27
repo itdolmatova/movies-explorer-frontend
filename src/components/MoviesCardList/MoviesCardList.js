@@ -12,6 +12,7 @@ function MoviesCardList(props) {
             </div>
             <button type="button" onClick={props.handleMoreBtnClick}
                 className={`moviescardlist__button ${props.isMoreButnVisible ? "" : "moviescardlist__button_hidden"}`}>Ещё</button>
+            {props.isNoMovies && <span className="moviescardlist__no-results">Ничего не найдено</span>}
         </>
     );
 }
