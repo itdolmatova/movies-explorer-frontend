@@ -5,7 +5,7 @@ function validateEmail(value) {
   if (isEmail(value)) {
     return "";
   } else {
-    return "Некорректный email";
+    return "Поле Email должно содержать @ и имя домена с . ";
   }
 }
 function validateName(value) {
@@ -40,13 +40,13 @@ export function useFormWithValidation() {
     const target = event.target;
     const name = target.name;
     const value = target.value;
-    let validationMessage = target.validationMessage
-    if(target.type === "email" && !validationMessage) {
-      validationMessage = validateEmail(value);
-    } 
-    if(target.name === "name" && !validationMessage) {
-      validationMessage = validateName(value);
-    } 
+    if (target.type === "email") {
+      target.setCustomValidity(validateEmail(value));
+    }
+    if (target.name === "name") {
+      target.setCustomValidity(validateName(value));
+    }
+    const validationMessage = target.validationMessage
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: validationMessage });
     setIsValid(target.closest("form").checkValidity());
