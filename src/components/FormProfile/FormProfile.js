@@ -13,7 +13,7 @@ function FormProfile(props) {
     
     function saveProfile(evt) {
         evt.preventDefault();
-        mainApi.updateUser(values)
+        mainApi.updateUser({ name: currentUser.name, email: currentUser.email, ...values })
         .then((res) => props.setCurrentUser(res))
         .then(() => setErrorMessage(""))
         .catch((err) => {setErrorMessage(ERR_PROFILE_UNKNOWN+ " " + err)});
