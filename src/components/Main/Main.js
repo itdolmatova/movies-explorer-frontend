@@ -11,7 +11,7 @@ function Main(props) {
     return (
         <>
             <div className="main">
-                <Header loggedIn={false} />
+                <Header />
                 <Hero />
                 <AboutProject />
                 <Techs />

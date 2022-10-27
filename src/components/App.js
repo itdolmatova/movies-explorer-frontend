@@ -18,7 +18,7 @@ import './App.css';
 function App() {
   const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [currentUser, setCurrentUser] = useState({ name: "", email: "" });
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const history = useHistory();
   const size = useWindowSize();
@@ -49,6 +49,7 @@ function App() {
     localStorage.removeItem(STOR_MOVIES_FILTER);
     localStorage.removeItem(STOR_SAVED_FILTER);
     localStorage.removeItem(STOR_MOVIES);
+    setCurrentUser({});
     setIsLoggedIn(false);
   }
 

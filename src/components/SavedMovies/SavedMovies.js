@@ -40,7 +40,7 @@ function SavedMovies(props) {
 
     return (
         <>
-            <Header loggedIn={true} />
+            <Header />
             <SearchForm handleSearch={handleSearch} storageName={STOR_SAVED_FILTER} />
             <MoviesCardList movies={getFilteredMovies()} handleIconClick={handleIconClick} />
             <Footer />

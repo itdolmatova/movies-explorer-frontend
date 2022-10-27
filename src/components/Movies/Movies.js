@@ -111,7 +111,7 @@ function Movies(props) {
 
     return (
         <>
-            <Header loggedIn={true} />
+            <Header />
             <SearchForm handleSearch={handleSearch} storageName={STOR_MOVIES_FILTER} />
             {isPreloaderVisible && <Preloader />}
             <MoviesCardList movies={movies} handleIconClick={handleIconClick}

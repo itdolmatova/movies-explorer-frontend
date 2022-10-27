@@ -14,7 +14,7 @@ function Profile(props) {
 
     return (
         <>
-            <Header loggedIn={true} />
+            <Header />
             <div className="profile">
                 <h1 className="profile__greeting">{`Привет, ${currentUser.name}!`}</h1>
                 <FormProfile setCurrentUser={props.setCurrentUser}/>
