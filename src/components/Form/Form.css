@@ -169,3 +169,15 @@
     opacity: 0.7;
     cursor: pointer;
 }
+
+.form__input_edit-success {
+    margin: 0;
+    padding: 60px 0 0;
+    display: flex;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4285F4;
+    justify-content: center;
+
+}

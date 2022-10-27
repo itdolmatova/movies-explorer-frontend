@@ -10,12 +10,19 @@ function FormProfile(props) {
     const currentUser = React.useContext(CurrentUserContext);
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const [ errorMessage, setErrorMessage ] = useState("");
-    
+    const [ isSuccessMessage, setIsSuccessMessage ] = useState(false);
+
+    useEffect (()=>{
+        setIsSuccessMessage(false);
+    },
+    [values]);
+
     function saveProfile(evt) {
         evt.preventDefault();
         mainApi.updateUser({ name: currentUser.name, email: currentUser.email, ...values })
         .then((res) => props.setCurrentUser(res))
         .then(() => setErrorMessage(""))
+        .then(() => setIsSuccessMessage(true))
         .catch((err) => {setErrorMessage(ERR_PROFILE_UNKNOWN+ " " + err)});
     }
 
@@ -45,6 +52,8 @@ function FormProfile(props) {
                             required onChange={handleChange} />
                     </div>
                     <span className="form__input_error form__input_error-color" >{errors.email}</span>
+                    
+                    { isSuccessMessage && <span className="form__input_edit-success" >Данные о пользователе успешно сохранены</span> }
 
                 </fieldset>
             </>
