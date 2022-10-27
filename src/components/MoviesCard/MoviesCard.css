@@ -21,7 +21,7 @@
     align-items: center;
     margin: 0;
     padding: 14px;
-    gap: 26px;
+    gap: 20px;
     
 }
 
@@ -32,6 +32,10 @@
     margin: 0;
     padding: 0;
     gap: 9px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    max-width: 85%;
 }
 
 .moviescard__title {
@@ -41,7 +45,10 @@
     font-size: 15px;
     line-height: 1.2;
     color: #FFF;
-    display: flex;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .moviescard__duration {

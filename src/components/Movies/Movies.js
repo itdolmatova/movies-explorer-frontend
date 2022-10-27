@@ -80,9 +80,7 @@ function Movies(props) {
                 if (filter.movieName) {
                     return movies.map(movie => {
                         if (movie.nameEN.toLowerCase().includes(filterStr) || movie.nameRU.toLowerCase().includes(filterStr)) {
-                            movie.order = 100;
-                        } else {
-                            movie.order = Math.max(distance(filterStr, movie.nameEN), distance(filterStr, movie.nameRU));
+                            movie.show = true;
                         }
                         return movie;
                     });
@@ -91,7 +89,7 @@ function Movies(props) {
                 }
             })
             .then((movies) => {
-                return movies.sort((m1, m2) => { return m2.order - m1.order })
+                return movies.filter((m) => {return m.show;})
             })
             .then(movies => {
                 saveMoviesToStorage(movies);
