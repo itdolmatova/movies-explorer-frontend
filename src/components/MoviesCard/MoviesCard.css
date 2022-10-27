@@ -35,7 +35,7 @@
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
-    max-width: 85%;
+    max-width: 80%;
 }
 
 .moviescard__title {
