@@ -23,11 +23,23 @@ function Movies(props) {
         if (movie.icon === "disabled") {
             mainApi.saveMovie(prepareMovieToApi(movie))
                 .then((res) => setIconState("enabled", res))
-                .catch((err) => props.errorHandler(ERR_MOVIES_LOADING));
+                .catch((err) => {
+                    if (mainApi.isUnauthorized(err)) {
+                        props.handleLogout();
+                    } else {
+                        props.errorHandler(ERR_MOVIES_LOADING);
+                    }
+                });
         } else {
             mainApi.deleteMovie(movie._id)
                 .then((res) => setIconState("disabled"))
-                .catch((err) => props.errorHandler(ERR_MOVIES_LOADING));
+                .catch((err) => {
+                    if (mainApi.isUnauthorized(err)) {
+                        props.handleLogout();
+                    } else {
+                        props.errorHandler(ERR_MOVIES_LOADING);
+                    }
+                });
         }
     }
 
@@ -102,7 +114,16 @@ function Movies(props) {
                 saveMoviesToStorage(movies);
                 showFirstMovies(movies);
             })
-            .then(() => setIsPreloaderVisible(false));
+            .then(() => setIsPreloaderVisible(false))
+            .catch((err) => {
+                if (mainApi.isUnauthorized(err)) {
+                    props.handleLogout();
+                } else {
+                    props.errorHandler(err);
+                }
+
+            }
+            );
     }
 
     function handleMoreBtnClick() {

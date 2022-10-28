@@ -17,7 +17,7 @@ function Profile(props) {
             <Header />
             <div className="profile">
                 <h1 className="profile__greeting">{`Привет, ${currentUser.name}!`}</h1>
-                <FormProfile setCurrentUser={props.setCurrentUser}/>
+                <FormProfile setCurrentUser={props.setCurrentUser} handleLogout={props.handleLogout} />
                 <Link to="/" className="profile__link" onClick={handleLogoutClick}>Выйти из аккаунта</Link>
             </div>
         </>

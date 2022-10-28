@@ -23,7 +23,14 @@ function FormProfile(props) {
         .then((res) => props.setCurrentUser(res))
         .then(() => setErrorMessage(""))
         .then(() => setIsSuccessMessage(true))
-        .catch((err) => {setErrorMessage(ERR_PROFILE_UNKNOWN+ " " + err)});
+        .catch((err) => {
+            if(mainApi.isUnauthorized(err)) {
+                props.handleLogout();
+            } else {
+                setErrorMessage(ERR_PROFILE_UNKNOWN+ " " + err.message);
+            }
+        
+        });
     }
 
     function isFieldsChanged(){

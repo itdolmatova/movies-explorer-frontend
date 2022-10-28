@@ -16,11 +16,15 @@ class MainApi {
         if (res.ok) {
             return res.json();
         } else if (res.status === 409 || res.status === 401 || res.status === 404 || res.status === 400) {
-            return res.json().then((body) => Promise.reject(body.message))
+            return res.json().then((body) => Promise.reject({status: res.status, message:body.message}))
         }
        
         return Promise.reject(`Ошибка: ${res.status}`);
     };
+
+    isUnauthorized(res) {
+        return res.status===401;
+    }
 
     createUser(name, email, password) {
         return fetch(this._baseUrl + '/signup', {

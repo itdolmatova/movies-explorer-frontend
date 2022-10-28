@@ -12,7 +12,7 @@ import ErrorPopup from './ErrorPopup/ErrorPopup';
 import mainApi from '../utils/MainApi';
 import { CurrentUserContext } from '../context/CurrentUserContext';
 import { useWindowSize } from '../utils/WindowSize';
-import {STOR_TOKEN, STOR_MOVIES_FILTER, STOR_SAVED_FILTER, STOR_MOVIES} from '../utils/Constant';
+import { STOR_TOKEN, STOR_MOVIES_FILTER, STOR_SAVED_FILTER, STOR_MOVIES } from '../utils/Constant';
 import './App.css';
 
 function App() {
@@ -35,7 +35,15 @@ function App() {
     if (token) {
       loadUserData(token)
         .then(() => history.push('/movies'))
-        .catch(err => handleError(err));
+        .catch(err => {
+          if (mainApi.isUnauthorized(err)) {
+            handleLogout();
+          } else {
+            handleError(err);
+          }
+
+        });
+
     }
   }, []);
 
@@ -51,6 +59,7 @@ function App() {
     localStorage.removeItem(STOR_MOVIES);
     setCurrentUser({});
     setIsLoggedIn(false);
+    history.push('/')
   }
 
   function handleError(message) {
@@ -74,9 +83,9 @@ function App() {
               <Main />
             </Route>
 
-            <ProtectedRoute path="/movies" loggedIn={isLoggedIn} component={Movies} errorHandler={handleError} size={size}/>
+            <ProtectedRoute path="/movies" loggedIn={isLoggedIn} component={Movies} errorHandler={handleError} size={size} handleLogout={handleLogout} />
 
-            <ProtectedRoute path="/saved" loggedIn={isLoggedIn} component={SavedMovies} errorHandler={handleError} />
+            <ProtectedRoute path="/saved" loggedIn={isLoggedIn} component={SavedMovies} errorHandler={handleError} handleLogout={handleLogout} />
 
             <ProtectedRoute path="/profile" loggedIn={isLoggedIn} component={Profile} setCurrentUser={setCurrentUser} handleLogout={handleLogout} />
 

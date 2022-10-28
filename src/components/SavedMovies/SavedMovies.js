@@ -11,13 +11,27 @@ function SavedMovies(props) {
     const [filter, setFilter] = useState({});
 
     useEffect(() => {
-        mainApi.getSavedMovies().then(movies => setMovies(movies));
+        mainApi.getSavedMovies()
+            .then(movies => setMovies(movies))
+            .catch((err) => {
+                if (mainApi.isUnauthorized(err)) {
+                    props.handleLogout();
+                } else {
+                    props.errorHandler(ERR_MOVIES_LOADING);
+                }
+            });
     }, []);
 
     function handleIconClick(movie) {
         mainApi.deleteMovie(movie._id)
             .then(() => setMovies(prevMovies => prevMovies.filter((m) => m._id !== movie._id)))
-            .catch((err) => props.errorHandler(ERR_MOVIES_LOADING));
+            .catch((err) => {
+                if (mainApi.isUnauthorized(err)) {
+                    props.handleLogout();
+                } else {
+                    props.errorHandler(ERR_MOVIES_LOADING);
+                }
+            });
     }
 
     function handleSearch(filter) {

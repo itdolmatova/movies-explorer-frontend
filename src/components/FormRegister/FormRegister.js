@@ -17,7 +17,7 @@ function FormRegister(props) {
         .then(() => mainApi.login(values.email, values.password))
         .then((res) => props.handleLogin(res.token))
         .then(() => history.push('/movies'))
-        .catch((err) => {setErrorMessage(ERR_REGISTER_UNKNOWN+ " " + err)});
+        .catch((err) => {setErrorMessage(ERR_REGISTER_UNKNOWN+ " " + err.message)});
     }
 
     function renderForm(props) {

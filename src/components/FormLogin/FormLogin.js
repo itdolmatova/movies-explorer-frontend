@@ -16,7 +16,7 @@ function FormLogin(props) {
         mainApi.login(values.email, values.password)
         .then((res) => props.handleLogin(res.token))
         .then(() => history.push('/movies'))
-        .catch((err) => {setErrorMessage(ERR_LOGIN_UNKNOWN + " " + err)});
+        .catch((err) => {setErrorMessage(ERR_LOGIN_UNKNOWN + " " + err.message)});
     }
     
     function renderForm(props) {
