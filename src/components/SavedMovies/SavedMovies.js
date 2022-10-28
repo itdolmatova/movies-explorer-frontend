@@ -4,7 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import mainApi from '../../utils/MainApi';
-import { ERR_MOVIES_LOADING, STOR_SAVED_FILTER } from '../../utils/Constant';
+import { ERR_MOVIES_LOADING } from '../../utils/Constant';
 
 function SavedMovies(props) {
     const [movies, setMovies] = useState([]);
@@ -55,7 +55,7 @@ function SavedMovies(props) {
     return (
         <>
             <Header />
-            <SearchForm handleSearch={handleSearch} storageName={STOR_SAVED_FILTER} />
+            <SearchForm handleSearch={handleSearch} />
             <MoviesCardList movies={getFilteredMovies()} handleIconClick={handleIconClick} />
             <Footer />
         </>

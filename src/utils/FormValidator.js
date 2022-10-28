@@ -1,6 +1,13 @@
 import React, { useCallback } from "react";
 const isEmail = require('validator/lib/isEmail');
 
+function validateSearchField(value) {
+  if (value && value.length > 0) {
+    return "";
+  } else {
+    return "Нужно ввести ключевое слово";
+  }
+}
 function validateEmail(value) {
   if (isEmail(value)) {
     return "";
@@ -45,6 +52,9 @@ export function useFormWithValidation() {
     }
     if (target.name === "name") {
       target.setCustomValidity(validateName(value));
+    }
+    if (target.name === "movieName") {
+      target.setCustomValidity(validateSearchField(value));
     }
     const validationMessage = target.validationMessage
     setValues({ ...values, [name]: value });

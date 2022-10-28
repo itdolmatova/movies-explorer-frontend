@@ -19,6 +19,26 @@ function Movies(props) {
     const [isNoMovies, setIsNoMovies] = useState(false);
 
 
+    function saveFilter(filter) {
+        localStorage.setItem(STOR_MOVIES_FILTER, JSON.stringify(filter));
+    }
+
+    function hasFilter() {
+        return localStorage.hasOwnProperty(STOR_MOVIES_FILTER);
+    }
+
+    function retrieveFilter() {
+        if (localStorage.getItem(STOR_MOVIES_FILTER)) {
+            const newObject = window.localStorage.getItem(STOR_MOVIES_FILTER);
+            return JSON.parse(newObject);
+        } else {
+            return {
+                shortMovie: false,
+                movieName: ""
+            }
+        }
+    }
+
     function handleIconClick(movie, setIconState) {
         if (movie.icon === "disabled") {
             mainApi.saveMovie(prepareMovieToApi(movie))
@@ -71,6 +91,7 @@ function Movies(props) {
 
     function handleSearch(filter) {
         console.log(filter);
+        saveFilter(filter);
         setMovies([]);
         setIsPreloaderVisible(true);
 
@@ -138,7 +159,7 @@ function Movies(props) {
     return (
         <>
             <Header />
-            <SearchForm handleSearch={handleSearch} storageName={STOR_MOVIES_FILTER} />
+            <SearchForm handleSearch={handleSearch} storageName={STOR_MOVIES_FILTER} filter={retrieveFilter()} />
             {isPreloaderVisible && <Preloader />}
             <MoviesCardList movies={movies} handleIconClick={handleIconClick}
                 isMoreButnVisible={isMoreButnVisible} isNoMovies={isNoMovies} handleMoreBtnClick={handleMoreBtnClick} />

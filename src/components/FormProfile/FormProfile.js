@@ -29,7 +29,6 @@ function FormProfile(props) {
             } else {
                 setErrorMessage(ERR_PROFILE_UNKNOWN+ " " + err.message);
             }
-        
         });
     }
 

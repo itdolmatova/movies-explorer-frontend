@@ -1,52 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useForm } from '../../utils/FormValidator';
+import { useFormWithValidation } from '../../utils/FormValidator';
 import Tumbler from '../Tumbler/Tumbler';
 import './SearchForm.css';
 
 
 function SearchForm(props) {
-    function saveFilter(filter) {
-        localStorage.setItem(props.storageName, JSON.stringify(filter));
-    }
+    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+    const [isShort, setIsShort] = useState(props.filter ? props.filter.shortMovie : false);
 
-    function hasFilter() {
-        return localStorage.hasOwnProperty(props.storageName);
-    }
-
-    function retrieveFilter() {
-        if (localStorage.getItem(props.storageName)) {
-            const newObject = window.localStorage.getItem(props.storageName);
-            return JSON.parse(newObject);
-        } else {
-            return {
-                shortMovie: false,
-                movieName: ""
-            }
-        }
-    }
-
-    const { values, handleChange, setValues } = useForm();
-    const [isShort, setIsShort] = useState(retrieveFilter().shortMovie);
-
-    useEffect(() => {
-        if (hasFilter()) { //if filter doesnt exist dont call CardList
-            const filter = retrieveFilter();
-            props.handleSearch(filter);
-        }
-    }, []);
-
-    function search(filter) {
-        props.handleSearch(filter);
-        saveFilter(filter)
-    }
 
     function handleSearchSubmit(evt) {
         evt.preventDefault();
         const filter = {
             shortMovie: isShort,
-            movieName: values.movieName
+            movieName: values.movieName ? values.movieName : props.filter.movieName
         }
-        search(filter);
+        props.handleSearch(filter);
     }
 
     /*тумблер отделен от формы,
@@ -57,17 +26,19 @@ function SearchForm(props) {
         setIsShort(shortMov);
         const filter = {
             shortMovie: shortMov,
-            movieName: values.movieName
+            movieName: values.movieName ? values.movieName : props.filter.movieName
         }
-        search(filter);
+        props.handleSearch(filter);
     }
 
     return (
         <div className="searchform">
             <form className="searchform__container" onSubmit={handleSearchSubmit}>
-                <input className="searchform__input" placeholder="Фильм" name="movieName" onChange={handleChange} required defaultValue={retrieveFilter().movieName} />
-                <button type="submit" className="searchform__button" />
+                <input className="searchform__input" placeholder="Фильм" name="movieName" onChange={handleChange}
+                    required defaultValue={props.filter ? props.filter.movieName : ""} />
+                <button type="submit" className="searchform__button" disabled={isValid ? false : true} />
             </form>
+            <span className="searchform__error">{errors.movieName}</span>
             <Tumbler name="Короткометражки" isOn={isShort} handleChange={handleTumblerClick} />
             <div className="searchform__underline" />
         </div>
