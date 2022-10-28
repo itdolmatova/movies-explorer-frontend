@@ -6,19 +6,22 @@ import Footer from '../Footer/Footer';
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { mapMovie, prepareMovieToApi, chooseIcon } from '../../utils/Mapper';
-import { ERR_MOVIES_LOADING, STOR_MOVIES_FILTER, STOR_MOVIES } from '../../utils/Constant';
+import { ERR_MOVIES_LOADING, STOR_MOVIES_FILTER, STOR_MOVIES, DESKTOP_SIZE, TABLET_SIZE, SHORT_MOVIE_LENGTH,
+    DESKTOP_QUANTITY_MOVIES, TABLET_QUANTITY_MOVIES, DESKTOP_INITIAL_QUANTITY, TABLET_INITIAL_QUANTITY,
+    MOBILE_INITIAL_QUANTITY } from '../../utils/Constant';
 import Preloader from '../Preloader/Preloader';
 
 function Movies(props) {
 
     const [movies, setMovies] = useState([]);
+    const [filteredMovies, setFilteredMovies] = useState([]);
     const [isPreloaderVisible, setIsPreloaderVisible] = useState(false);
     const [lastIndex, setLastIndex] = useState(0);
     const [isMoreButnVisible, setIsMoreButnVisible] = useState(false);
     const [isNoMovies, setIsNoMovies] = useState(false);
 
     useEffect(() => {
-        if (hasStoredMovies()) showFilteredMovies(retrieveFilter());
+        if (hasStoredMovies()) showFirstMovies(retrieveFilteredStoredMovies());
     }, [])
 
     function saveFilter(filter) {
@@ -49,21 +52,30 @@ function Movies(props) {
         return JSON.parse(window.localStorage.getItem(STOR_MOVIES));
     }
 
+    function retrieveFilteredStoredMovies() {
+        return filterMovies(retrieveStoredMovies(), retrieveFilter());
+    }
+
     function showFirstMovies(movies) {
         const countInitialSize = () => {
-            if (props.size.width >= 1280) {
-                return 12;
-            } else if (props.size.width >= 768) {
-                return 8;
+            if (props.size.width >= DESKTOP_SIZE) {
+                return DESKTOP_INITIAL_QUANTITY;
+            } else if (props.size.width >= TABLET_SIZE) {
+                return TABLET_INITIAL_QUANTITY;
             } else {
-                return 5;
+                return MOBILE_INITIAL_QUANTITY;
             }
         }
         const initialSize = countInitialSize();
         const firstMovies = movies.slice(0, initialSize);
-        if (movies.length > initialSize) setIsMoreButnVisible(true);
+        if (movies.length > initialSize) {
+            setIsMoreButnVisible(true);
+        } else {
+            setIsMoreButnVisible(false);
+        }
         setMovies(firstMovies);
-        setLastIndex(movies.length);
+        setFilteredMovies(movies);
+        setLastIndex(firstMovies.length);
         if (movies.length === 0) {
             setIsNoMovies(true);
         } else {
@@ -85,7 +97,7 @@ function Movies(props) {
     }
 
     function checkMovieDuration(movie, filter) {
-        if (filter.shortMovie === true && movie.duration > 40) {
+        if (filter.shortMovie === true && movie.duration > SHORT_MOVIE_LENGTH) {
             return false;
         } else {
             return true;
@@ -98,20 +110,14 @@ function Movies(props) {
         });
     }
 
-    function showFilteredMovies(filter) {
-        setIsPreloaderVisible(true);
-        const movies = retrieveStoredMovies();
-        showFirstMovies(filterMovies(movies, filter));
-        setIsPreloaderVisible(false);
-    }
-
     function handleSearch(filter) {
         console.log(filter);
         saveFilter(filter);
         setMovies([]);
-        setIsPreloaderVisible(true);
-
+        
         if (!hasStoredMovies()) {
+            setIsPreloaderVisible(true);
+
             const savedMoviesPromise = mainApi.getSavedMovies();
             const moviesPromise = moviesApi.getMovies()
                 .then(movies => movies.map(v => mapMovie(v)));
@@ -120,7 +126,8 @@ function Movies(props) {
                 .then(([movies, savedMovies]) => movies.map(movie => chooseIcon(movie, savedMovies)))
                 .then((movies) => {
                     saveMoviesToStorage(movies);
-                    showFirstMovies(filterMovies(movies, filter));
+                    //showFirstMovies(filterMovies(movies, filter));
+                    showFirstMovies(retrieveFilteredStoredMovies());
                     setIsPreloaderVisible(false);
                 })
                 .catch((err) => {
@@ -131,16 +138,16 @@ function Movies(props) {
                     }
                 });
         } else {
-            showFilteredMovies(filter);
+            showFirstMovies(retrieveFilteredStoredMovies());
         }
-
     }
 
     function handleMoreBtnClick() {
-        const storageMovies = JSON.parse(localStorage.getItem(STOR_MOVIES));
-        const howMuchAdd = (props.size.width >= 1280) ? 3 : 2;
-        const newMovies = movies.concat(storageMovies.slice(lastIndex, lastIndex + howMuchAdd));
-        if (storageMovies.length === newMovies.length) setIsMoreButnVisible(false);
+        const howMuchAdd = (props.size.width >= DESKTOP_SIZE) ? DESKTOP_QUANTITY_MOVIES : TABLET_QUANTITY_MOVIES;
+        const newMovies = movies.concat(filteredMovies.slice(lastIndex, lastIndex + howMuchAdd));
+        console.log("nasta0",filteredMovies.slice(lastIndex, lastIndex + howMuchAdd));
+        if (filteredMovies.length === newMovies.length) setIsMoreButnVisible(false);
+        console.log("nastiacgbn",filteredMovies, newMovies, lastIndex, howMuchAdd);
         setMovies(newMovies);
         setLastIndex(newMovies.length);
     }
