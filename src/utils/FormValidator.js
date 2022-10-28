@@ -1,13 +1,6 @@
 import React, { useCallback } from "react";
 const isEmail = require('validator/lib/isEmail');
 
-function validateSearchField(value) {
-  if (value && value.length > 0) {
-    return "";
-  } else {
-    return "Нужно ввести ключевое слово";
-  }
-}
 function validateEmail(value) {
   if (isEmail(value)) {
     return "";
@@ -24,8 +17,8 @@ function validateName(value) {
 }
 
 //хук управления формой
-export function useForm() {
-  const [values, setValues] = React.useState({});
+export function useForm(initValues) {
+  const [values, setValues] = React.useState(initValues);
 
   const handleChange = (event) => {
     const target = event.target;
@@ -52,9 +45,6 @@ export function useFormWithValidation() {
     }
     if (target.name === "name") {
       target.setCustomValidity(validateName(value));
-    }
-    if (target.name === "movieName") {
-      target.setCustomValidity(validateSearchField(value));
     }
     const validationMessage = target.validationMessage
     setValues({ ...values, [name]: value });

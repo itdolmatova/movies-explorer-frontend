@@ -8,7 +8,6 @@ import mainApi from '../../utils/MainApi';
 import { mapMovie, prepareMovieToApi, chooseIcon } from '../../utils/Mapper';
 import { ERR_MOVIES_LOADING, STOR_MOVIES_FILTER, STOR_MOVIES } from '../../utils/Constant';
 import Preloader from '../Preloader/Preloader';
-//import { distance } from 'fastest-levenshtein';
 
 function Movies(props) {
 
@@ -18,13 +17,12 @@ function Movies(props) {
     const [isMoreButnVisible, setIsMoreButnVisible] = useState(false);
     const [isNoMovies, setIsNoMovies] = useState(false);
 
+    useEffect(() => {
+        if (hasStoredMovies()) showFilteredMovies(retrieveFilter());
+    }, [])
 
     function saveFilter(filter) {
         localStorage.setItem(STOR_MOVIES_FILTER, JSON.stringify(filter));
-    }
-
-    function hasFilter() {
-        return localStorage.hasOwnProperty(STOR_MOVIES_FILTER);
     }
 
     function retrieveFilter() {
@@ -39,32 +37,16 @@ function Movies(props) {
         }
     }
 
-    function handleIconClick(movie, setIconState) {
-        if (movie.icon === "disabled") {
-            mainApi.saveMovie(prepareMovieToApi(movie))
-                .then((res) => setIconState("enabled", res))
-                .catch((err) => {
-                    if (mainApi.isUnauthorized(err)) {
-                        props.handleLogout();
-                    } else {
-                        props.errorHandler(ERR_MOVIES_LOADING);
-                    }
-                });
-        } else {
-            mainApi.deleteMovie(movie._id)
-                .then((res) => setIconState("disabled"))
-                .catch((err) => {
-                    if (mainApi.isUnauthorized(err)) {
-                        props.handleLogout();
-                    } else {
-                        props.errorHandler(ERR_MOVIES_LOADING);
-                    }
-                });
-        }
+    function hasStoredMovies() {
+        return localStorage.hasOwnProperty(STOR_MOVIES);
     }
 
     function saveMoviesToStorage(movies) {
         localStorage.setItem(STOR_MOVIES, JSON.stringify(movies));
+    }
+
+    function retrieveStoredMovies() {
+        return JSON.parse(window.localStorage.getItem(STOR_MOVIES));
     }
 
     function showFirstMovies(movies) {
@@ -89,62 +71,69 @@ function Movies(props) {
         }
     }
 
+    function checkMovieName(movie, filter) {
+        const filterStr = filter.movieName ? filter.movieName.toLowerCase() : "";
+        if (filter.movieName) {
+            if (movie.nameEN.toLowerCase().includes(filterStr) || movie.nameRU.toLowerCase().includes(filterStr)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        };
+    }
+
+    function checkMovieDuration(movie, filter) {
+        if (filter.shortMovie === true && movie.duration > 40) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function filterMovies(movies, filter) {
+        return movies.filter(movie => {
+            return checkMovieName(movie, filter) && checkMovieDuration(movie, filter)
+        });
+    }
+
+    function showFilteredMovies(filter) {
+        setIsPreloaderVisible(true);
+        const movies = retrieveStoredMovies();
+        showFirstMovies(filterMovies(movies, filter));
+        setIsPreloaderVisible(false);
+    }
+
     function handleSearch(filter) {
         console.log(filter);
         saveFilter(filter);
         setMovies([]);
         setIsPreloaderVisible(true);
 
-        const moviesPromise = moviesApi.getMovies()
-            .then(movies => movies.map(v => mapMovie(v)))
-            .then(movies => {
-                if (filter.shortMovie) {
-                    return movies.filter(movie => {
-                        if (filter.shortMovie === true && movie.duration > 40) {
-                            return false;
-                        }
-                        return true;
-                    })
-                } else {
-                    return movies;
-                }
-            });
+        if (!hasStoredMovies()) {
+            const savedMoviesPromise = mainApi.getSavedMovies();
+            const moviesPromise = moviesApi.getMovies()
+                .then(movies => movies.map(v => mapMovie(v)));
 
-        const savedMoviesPromise = mainApi.getSavedMovies();
+            Promise.all([moviesPromise, savedMoviesPromise])
+                .then(([movies, savedMovies]) => movies.map(movie => chooseIcon(movie, savedMovies)))
+                .then((movies) => {
+                    saveMoviesToStorage(movies);
+                    showFirstMovies(filterMovies(movies, filter));
+                    setIsPreloaderVisible(false);
+                })
+                .catch((err) => {
+                    if (mainApi.isUnauthorized(err)) {
+                        props.handleLogout();
+                    } else {
+                        props.errorHandler(err);
+                    }
+                });
+        } else {
+            showFilteredMovies(filter);
+        }
 
-        const filterStr = filter.movieName ? filter.movieName.toLowerCase() : "";
-
-        Promise.all([moviesPromise, savedMoviesPromise])
-            .then(([movies, savedMovies]) => movies.map(movie => chooseIcon(movie, savedMovies)))
-            .then((movies) => {
-                if (filter.movieName) {
-                    return movies.map(movie => {
-                        if (movie.nameEN.toLowerCase().includes(filterStr) || movie.nameRU.toLowerCase().includes(filterStr)) {
-                            movie.show = true;
-                        }
-                        return movie;
-                    });
-                } else {
-                    return movies;
-                }
-            })
-            .then((movies) => {
-                return movies.filter((m) => { return m.show; })
-            })
-            .then(movies => {
-                saveMoviesToStorage(movies);
-                showFirstMovies(movies);
-            })
-            .then(() => setIsPreloaderVisible(false))
-            .catch((err) => {
-                if (mainApi.isUnauthorized(err)) {
-                    props.handleLogout();
-                } else {
-                    props.errorHandler(err);
-                }
-
-            }
-            );
     }
 
     function handleMoreBtnClick() {
@@ -154,6 +143,30 @@ function Movies(props) {
         if (storageMovies.length === newMovies.length) setIsMoreButnVisible(false);
         setMovies(newMovies);
         setLastIndex(newMovies.length);
+    }
+
+    function handleIconClick(movie, setIconState) {
+        if (movie.icon === "disabled") {
+            mainApi.saveMovie(prepareMovieToApi(movie))
+                .then((res) => setIconState("enabled", res))
+                .catch((err) => {
+                    if (mainApi.isUnauthorized(err)) {
+                        props.handleLogout();
+                    } else {
+                        props.errorHandler(ERR_MOVIES_LOADING);
+                    }
+                });
+        } else {
+            mainApi.deleteMovie(movie._id)
+                .then((res) => setIconState("disabled"))
+                .catch((err) => {
+                    if (mainApi.isUnauthorized(err)) {
+                        props.handleLogout();
+                    } else {
+                        props.errorHandler(ERR_MOVIES_LOADING);
+                    }
+                });
+        }
     }
 
     return (
