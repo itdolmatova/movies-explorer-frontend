@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css';
 import burgerPath from '../../images/navi-burger.svg';
 import profilePath from '../../images/profile-icon.svg';
@@ -10,8 +10,8 @@ function Navigation(props) {
         <div className="navigation">
             <div className={`navigation__full ${props.loggedIn?"navigation__full_visibility":"navigation_hidden"}`}>
                 <div className="navigation__movies">
-                    <Link to="movies" className="navigation__movies_link navigation__movies_link_active">Фильмы</Link>
-                    <Link to="saved" className="navigation__movies_link">Сохраненные фильмы</Link>
+                    <NavLink to="movies" className="navigation__movies_link" activeClassName="navigation__movies_link_active">Фильмы</NavLink>
+                    <NavLink to="saved" className="navigation__movies_link" activeClassName="navigation__movies_link_active">Сохраненные фильмы</NavLink>
                 </div>
                 <Link to="profile" className="navigation__profile">
                     <h2 className="navigation__profile_link">Аккаунт</h2>
