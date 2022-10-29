@@ -1,4 +1,5 @@
 import { MOVIES_URL } from "./Constant";
+import validator from 'validator';
 export const mapMovie = (v) => {
     return {
         country: v.country,
@@ -7,7 +8,7 @@ export const mapMovie = (v) => {
         year: v.year,
         description: v.description,
         image: `${MOVIES_URL}${v.image.url}`,
-        trailerLink: v.trailerLink,
+        trailerLink: validator.isURL(v.trailerLink)?v.trailerLink:"https://yandex.ru/search/?text="+v.trailerLink.replaceAll(' ', '+'),
         nameRU: v.nameRU,
         nameEN: v.nameEN,
         thumbnail: `${MOVIES_URL}${v.image.formats.thumbnail.url}`,
@@ -17,7 +18,7 @@ export const mapMovie = (v) => {
 
 export const chooseIcon = (movie, savedMovies) => {
     const result = savedMovies.find(e => e.movieId === movie.movieId);
-    if (result) { 
+    if (result) {
         movie.icon = "enabled";
         movie._id = result._id;
     } else {
