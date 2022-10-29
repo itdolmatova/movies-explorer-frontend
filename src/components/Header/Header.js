@@ -9,7 +9,6 @@ function Header(props) {
 
     const [isNavigationPopupOpen, setIsNavigationPopupOpen] = useState(false);
     const currentUser = React.useContext(CurrentUserContext);
-console.log(currentUser);
     function handlePopupClose() {
         setIsNavigationPopupOpen(false);
     }

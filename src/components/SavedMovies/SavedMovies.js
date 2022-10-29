@@ -4,7 +4,8 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import mainApi from '../../utils/MainApi';
-import { ERR_MOVIES_LOADING } from '../../utils/Constant';
+import { ERR_MOVIES_LOADING, ICON_DISABLED } from '../../utils/Constant';
+import { disableMovieInStorage } from '../../utils/Storage';
 
 function SavedMovies(props) {
     const [movies, setMovies] = useState([]);
@@ -24,7 +25,10 @@ function SavedMovies(props) {
 
     function handleIconClick(movie) {
         mainApi.deleteMovie(movie._id)
-            .then(() => setMovies(prevMovies => prevMovies.filter((m) => m._id !== movie._id)))
+            .then((res) => {
+                disableMovieInStorage(movie);
+                setMovies(prevMovies => prevMovies.filter((m) => m._id !== movie._id));
+            })
             .catch((err) => {
                 if (mainApi.isUnauthorized(err)) {
                     props.handleLogout();

@@ -15,3 +15,6 @@ export const TABLET_QUANTITY_MOVIES = 2;
 export const DESKTOP_INITIAL_QUANTITY = 12;
 export const TABLET_INITIAL_QUANTITY = 8;
 export const MOBILE_INITIAL_QUANTITY = 5;
+export const ICON_DISABLED = "disabled";
+export const ICON_ENABLED = "enabled";
+

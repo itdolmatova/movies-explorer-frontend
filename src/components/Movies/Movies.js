@@ -7,10 +7,13 @@ import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { mapMovie, prepareMovieToApi, chooseIcon } from '../../utils/Mapper';
 import {
-    ERR_MOVIES_LOADING, STOR_MOVIES_FILTER, STOR_MOVIES, DESKTOP_SIZE, TABLET_SIZE, SHORT_MOVIE_LENGTH,
+    ERR_MOVIES_LOADING, STOR_MOVIES_FILTER, DESKTOP_SIZE, TABLET_SIZE, SHORT_MOVIE_LENGTH,
     DESKTOP_QUANTITY_MOVIES, TABLET_QUANTITY_MOVIES, DESKTOP_INITIAL_QUANTITY, TABLET_INITIAL_QUANTITY,
-    MOBILE_INITIAL_QUANTITY
+    MOBILE_INITIAL_QUANTITY,
+    ICON_ENABLED,
+    ICON_DISABLED
 } from '../../utils/Constant';
+import { hasStoredMovies, saveMoviesToStorage, retrieveStoredMovies, disableMovieInStorage, enableMovieInStorage } from '../../utils/Storage';
 import Preloader from '../Preloader/Preloader';
 
 function Movies(props) {
@@ -40,18 +43,6 @@ function Movies(props) {
                 movieName: ""
             }
         }
-    }
-
-    function hasStoredMovies() {
-        return localStorage.hasOwnProperty(STOR_MOVIES);
-    }
-
-    function saveMoviesToStorage(movies) {
-        localStorage.setItem(STOR_MOVIES, JSON.stringify(movies));
-    }
-
-    function retrieveStoredMovies() {
-        return JSON.parse(window.localStorage.getItem(STOR_MOVIES));
     }
 
     function retrieveFilteredStoredMovies() {
@@ -152,22 +143,13 @@ function Movies(props) {
         setLastIndex(newMovies.length);
     }
 
-    function changeIconInStorage(res, icon) {
-        const changedMovies = retrieveStoredMovies().map((m) => {
-            if (m.movieId === res.movieId) {
-                m.icon = icon;
-                m._id = res._id
-            }
-            return m;
-        });
-        saveMoviesToStorage(changedMovies);
-    }
+
     function handleIconClick(movie, setIconState) {
-        if (movie.icon === "disabled") {
+        if (movie.icon === ICON_DISABLED) {
             mainApi.saveMovie(prepareMovieToApi(movie))
                 .then((res) => {
-                    changeIconInStorage(res, "enabled");
-                    setIconState("enabled", res);
+                    enableMovieInStorage(res);
+                    setIconState(ICON_ENABLED, res);
                 })
                 .catch((err) => {
                     if (mainApi.isUnauthorized(err)) {
@@ -179,8 +161,8 @@ function Movies(props) {
         } else {
             mainApi.deleteMovie(movie._id)
                 .then((res) => {
-                    changeIconInStorage(res, "enabled");
-                    setIconState("disabled");
+                    disableMovieInStorage(movie);
+                    setIconState(ICON_DISABLED);
                 })
                 .catch((err) => {
                     if (mainApi.isUnauthorized(err)) {
