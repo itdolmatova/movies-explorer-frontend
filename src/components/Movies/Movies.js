@@ -6,9 +6,11 @@ import Footer from '../Footer/Footer';
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { mapMovie, prepareMovieToApi, chooseIcon } from '../../utils/Mapper';
-import { ERR_MOVIES_LOADING, STOR_MOVIES_FILTER, STOR_MOVIES, DESKTOP_SIZE, TABLET_SIZE, SHORT_MOVIE_LENGTH,
+import {
+    ERR_MOVIES_LOADING, STOR_MOVIES_FILTER, STOR_MOVIES, DESKTOP_SIZE, TABLET_SIZE, SHORT_MOVIE_LENGTH,
     DESKTOP_QUANTITY_MOVIES, TABLET_QUANTITY_MOVIES, DESKTOP_INITIAL_QUANTITY, TABLET_INITIAL_QUANTITY,
-    MOBILE_INITIAL_QUANTITY } from '../../utils/Constant';
+    MOBILE_INITIAL_QUANTITY
+} from '../../utils/Constant';
 import Preloader from '../Preloader/Preloader';
 
 function Movies(props) {
@@ -114,7 +116,7 @@ function Movies(props) {
         console.log(filter);
         saveFilter(filter);
         setMovies([]);
-        
+
         if (!hasStoredMovies()) {
             setIsPreloaderVisible(true);
 
@@ -145,17 +147,28 @@ function Movies(props) {
     function handleMoreBtnClick() {
         const howMuchAdd = (props.size.width >= DESKTOP_SIZE) ? DESKTOP_QUANTITY_MOVIES : TABLET_QUANTITY_MOVIES;
         const newMovies = movies.concat(filteredMovies.slice(lastIndex, lastIndex + howMuchAdd));
-        console.log("nasta0",filteredMovies.slice(lastIndex, lastIndex + howMuchAdd));
         if (filteredMovies.length === newMovies.length) setIsMoreButnVisible(false);
-        console.log("nastiacgbn",filteredMovies, newMovies, lastIndex, howMuchAdd);
         setMovies(newMovies);
         setLastIndex(newMovies.length);
     }
 
+    function changeIconInStorage(res, icon) {
+        const changedMovies = retrieveStoredMovies().map((m) => {
+            if (m.movieId === res.movieId) {
+                m.icon = icon;
+                m._id = res._id
+            }
+            return m;
+        });
+        saveMoviesToStorage(changedMovies);
+    }
     function handleIconClick(movie, setIconState) {
         if (movie.icon === "disabled") {
             mainApi.saveMovie(prepareMovieToApi(movie))
-                .then((res) => setIconState("enabled", res))
+                .then((res) => {
+                    changeIconInStorage(res, "enabled");
+                    setIconState("enabled", res);
+                })
                 .catch((err) => {
                     if (mainApi.isUnauthorized(err)) {
                         props.handleLogout();
@@ -165,7 +178,10 @@ function Movies(props) {
                 });
         } else {
             mainApi.deleteMovie(movie._id)
-                .then((res) => setIconState("disabled"))
+                .then((res) => {
+                    changeIconInStorage(res, "enabled");
+                    setIconState("disabled");
+                })
                 .catch((err) => {
                     if (mainApi.isUnauthorized(err)) {
                         props.handleLogout();
