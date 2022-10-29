@@ -59,7 +59,7 @@ function SavedMovies(props) {
     return (
         <>
             <Header />
-            <SearchForm handleSearch={handleSearch} />
+            <SearchForm handleSearch={handleSearch} filter={{ shortMovie: false, movieName: "" }} />
             <MoviesCardList movies={getFilteredMovies()} handleIconClick={handleIconClick} />
             <Footer />
         </>
