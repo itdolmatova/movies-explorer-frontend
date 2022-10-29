@@ -13,14 +13,16 @@ export function retrieveStoredMovies() {
 }
 
 function changeIconInStorage(movie, icon) {
-    const changedMovies = retrieveStoredMovies().map((m) => {
-        if (m.movieId === movie.movieId) {
-            m.icon = icon;
-            m._id = movie._id
-        }
-        return m;
-    });
-    saveMoviesToStorage(changedMovies);
+    if (hasStoredMovies()) {
+        const changedMovies = retrieveStoredMovies().map((m) => {
+            if (m.movieId === movie.movieId) {
+                m.icon = icon;
+                m._id = movie._id
+            }
+            return m;
+        });
+        saveMoviesToStorage(changedMovies);
+    }
 }
 
 export function disableMovieInStorage(movie) {
