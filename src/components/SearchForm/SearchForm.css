@@ -94,3 +94,11 @@
     padding: 0;
     background-color: #424242;
 }
+
+.searchform__error {
+    margin: 0;
+    padding: 10px;
+    color: #EE3465;
+    font-size: 14px;
+    font-weight: 500;
+}

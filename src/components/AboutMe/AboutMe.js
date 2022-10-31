@@ -16,7 +16,7 @@ function AboutMe() {
                     <h2 className="aboutme__title">Анастасия</h2>
                     <h3 className="aboutme__subtitle">Фронтенд-разработчик, 38лет</h3>
                     <p className="aboutme__text">Я родилась и живу в Краснодаре, закончила социально-гуманитарный факультет КубГТУ по специальности "Документационное обеспечение управления". Проработала в крупном российском операторе связи 9 лет, в т.ч. в должности бизнес-аналитика. Затем ушла в декрет, во время которого прохожу обучение в Яндекс.Практикуме по специальности "Веб-разработчик".</p>
-                    <Link to="https://github.com/itdolmatova" className="aboutme__github-link">Github</Link>
+                    <Link to={{ pathname: "https://github.com/itdolmatova" }} target="_blank" className="aboutme__github-link">Github</Link>
                 </div>
                 <img className="aboutme__photo" alt="Фотография" src={photoPath} />
             </div>

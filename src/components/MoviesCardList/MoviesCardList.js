@@ -4,16 +4,15 @@ import './MoviesCardList.css';
 
 
 function MoviesCardList(props) {
-    function isMoreButnVisible() {
-        return props.movies.length > 4
-    }
 
     return (
         <>
             <div className="moviescardlist__container">
-                {props.movies.map((movie, i) => <MovieCard url={movie.url} name={movie.nameRU} icon={movie.icon} duration={movie.duration} key={i} />)}
+                {props.movies.map((movie, i) => <MovieCard data={movie} key={movie.movieId} handleIconClick={props.handleIconClick} />)}
             </div>
-            <button type="button" className={`moviescardlist__button ${isMoreButnVisible() ? "" : "moviescardlist__button_hidden"}`}>Ещё</button>
+            <button type="button" onClick={props.handleMoreBtnClick}
+                className={`moviescardlist__button ${props.isMoreButnVisible ? "" : "moviescardlist__button_hidden"}`}>Ещё</button>
+            {props.isNoMovies && <span className="moviescardlist__no-results">Ничего не найдено</span>}
         </>
     );
 }

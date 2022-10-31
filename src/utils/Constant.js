@@ -1,0 +1,20 @@
+export const MOVIES_URL = 'https://api.nomoreparties.co';
+export const ERR_MOVIES_LOADING = "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
+export const ERR_REGISTER_UNKNOWN = "При регистрации пользователя произошла ошибка.";
+export const ERR_LOGIN_UNKNOWN = "При авторизации произошла ошибка.";
+export const ERR_PROFILE_UNKNOWN = "При обновлении профиля произошла ошибка.";
+export const STOR_TOKEN = "token";
+export const STOR_MOVIES_FILTER = "moviesFilter";
+export const STOR_SAVED_FILTER = "savedFilter";
+export const STOR_MOVIES = "moviesBeatfilm";
+export const DESKTOP_SIZE = 1280;
+export const TABLET_SIZE = 768;
+export const SHORT_MOVIE_LENGTH = 40;
+export const DESKTOP_QUANTITY_MOVIES = 3;
+export const TABLET_QUANTITY_MOVIES = 2;
+export const DESKTOP_INITIAL_QUANTITY = 12;
+export const TABLET_INITIAL_QUANTITY = 8;
+export const MOBILE_INITIAL_QUANTITY = 5;
+export const ICON_DISABLED = "disabled";
+export const ICON_ENABLED = "enabled";
+

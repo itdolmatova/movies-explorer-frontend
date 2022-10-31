@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Logo from '../Logo/Logo';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Navigation from '../Navigation/Navigation';
 import NavigationPopup from '../NavigationPopup/NavigationPopup';
 import './Header.css';
@@ -7,7 +8,7 @@ import './Header.css';
 function Header(props) {
 
     const [isNavigationPopupOpen, setIsNavigationPopupOpen] = useState(false);
-
+    const currentUser = React.useContext(CurrentUserContext);
     function handlePopupClose() {
         setIsNavigationPopupOpen(false);
     }
@@ -22,7 +23,7 @@ function Header(props) {
                 <div className="header__logo">
                     <Logo />
                 </div>
-                <Navigation loggedIn={props.loggedIn} handleNavigationPopupOpen={handleNavigationPopupOpen} />
+                <Navigation loggedIn={currentUser.name?true:false} handleNavigationPopupOpen={handleNavigationPopupOpen} />
             </header>
             <NavigationPopup isOpen={isNavigationPopupOpen} onClose={handlePopupClose} />
         </>
